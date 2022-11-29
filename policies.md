@@ -1,6 +1,6 @@
 <!--
 ---
-title:  FIRST DNS Abuse SIG: Code of Conduct and other policies
+title:  "FIRST DNS Abuse SIG: Code of Conduct and other policies"
 ...
 -->
 
