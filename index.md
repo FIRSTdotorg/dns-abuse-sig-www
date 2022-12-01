@@ -1,6 +1,10 @@
 <!--
 ---
 title:  FIRST DNS Abuse SIG
+  url: /global/sigs/dns/
+  nav: 
+    - title: "Policies"
+      url: /global/sigs/dns/policies
 ...
 -->
 
