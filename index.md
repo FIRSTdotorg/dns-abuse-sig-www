@@ -30,7 +30,7 @@ We currently have a regularly scheduled weekly meeting on Thursdays at 13:00 UTC
 ## Chair
 
  - John Todd, Quad9
- - Jonathan Spring
+ - Jonathan Spring, CISA
  - <a href="mailto:peter@dnsfilter.com">Peter Lowe</a>, DNSFilter 
 
 
