@@ -31,7 +31,7 @@ We currently have a regularly scheduled weekly meeting on Thursdays at 13:00 UTC
 
  - John Todd, Quad9
  - Jonathan Spring
- - <a href="mailto:peter@dnsfilter.com">Peter Lowe</a>, DNSFilter 
+ - Peter Lowe
 
 
 ## Membership and Joining the SIG
