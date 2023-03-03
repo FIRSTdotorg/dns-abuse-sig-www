@@ -4,3 +4,6 @@
   nav:
     - title: Code of Conduct & Other Policies
       url: /global/sigs/dns/policies
+
+    - title: Examples of DNS Abuse
+      url: /global/sigs/dns/dns-abuse-examples
