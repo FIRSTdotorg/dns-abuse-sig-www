@@ -43,6 +43,11 @@ We currently have a regularly scheduled weekly meeting on Thursdays at 13:00 UTC
  - Jonathan Spring, CISA
  - Peter Lowe
 
+## Founders
+
+ - Carlos Alvarez
+ - Merike Kaeo
+ - Trey Darley
 
 ## Membership and Joining the SIG
 
