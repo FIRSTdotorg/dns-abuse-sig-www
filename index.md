@@ -35,7 +35,7 @@ Thanks is given in the document, which is the result of collaboration between ma
 
 ## Meetings and Communication
 
-We currently have a regularly scheduled weekly meeting on Thursdays at 13:00 UTC. Most regular communication is done through the Slack channel, but we also have a <a href="mailto:dns-abuse-sig@first.org">mailing list</a> for members which is used for more official discussion and in cases where we need to reach the entire SIG.
+We currently have a regularly scheduled weekly meeting on Thursdays at either 07:00 UTC, or 19:00 UTC, rotating. Most regular communication is done through the Slack channel, but we also have a <a href="mailto:dns-abuse-sig@first.org">mailing list</a> for members which is used for more official discussion and in cases where we need to reach the entire SIG.
 
 
 ## Chair
