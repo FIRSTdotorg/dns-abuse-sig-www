@@ -47,6 +47,7 @@ We currently have a regularly scheduled weekly meeting on Thursdays at either 07
 
  - Carlos Alvarez
  - Merike Kaeo
+ - Michael Hausding
  - Trey Darley
 
 ## Membership and Joining the SIG
