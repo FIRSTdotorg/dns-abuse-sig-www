@@ -38,6 +38,13 @@ Many thanks to Shoko Nakai for arranging a Japanese translation of this document
 
  -  <a href="DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf">DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf</a>
 
+### Uses of The DNS Abuse Techniques Matrix
+
+The Matrix has been incoporated into other work elsewhere:
+
+ - <a href="https://github.com/MISP/misp-galaxy#first-dns-abuse-techniques-matrix">MISP Galaxy</a>
+ - <a href="https://github.com/dod-cyber-crime-center/cti-stix-common-objects/blob/incident_rework/extension-definition-specifications/incident-core/Incident%20Extension%20Suite.adoc#event-type-ov">STIX Event Type Vocabulary</a>
+
 
 ## Meetings and Communication
 
