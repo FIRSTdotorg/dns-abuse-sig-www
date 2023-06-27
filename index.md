@@ -32,6 +32,12 @@ The advice currently takes the form of a matrix indicating whether a specific st
 
 Thanks is given in the document, which is the result of collaboration between many people representing a wide of range roles in the DNS industry.
 
+### Japanese Translation
+
+Many thanks to Shoko Nakai for arranging a Japanese translation of this document, available here:
+
+ -  <a href="DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf">DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf</a>
+
 
 ## Meetings and Communication
 
