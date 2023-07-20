@@ -60,9 +60,10 @@ We currently have a regularly scheduled weekly meeting on Thursdays at either 07
 ## Founders
 
  - Carlos Alvarez
+ - Trey Darley
  - Merike Kaeo
  - Michael Hausding
- - Trey Darley
+ - Jonathan Matkowsky
 
 ## Membership and Joining the SIG
 
