@@ -23,3 +23,18 @@ DGAs are listed as a technique for C2 traffic in MITRE ATTACK T1568.002:
     _ \
 _[https://attack.mitre.org/techniques/T1568/002/](https://attack.mitre.org/techniques/T1568/002/)
 
+
+## Advice
+
+Detection of first use of DGA domains is considered beyond the scope of what a “typical” SOC can detect without the help of Cyber Threat Intelligence (CTI) DNS blocklist feeds, subscribing to a Response Policy Zone (RPZ), or using a Protective DNS solution.
+
+MITRE ATT&CK describes detections for DGAs:
+
+
+    _“Detecting dynamically generated domains can be challenging due to the number of different DGA algorithms, constantly evolving malware families, and the increasing complexity of the algorithms. There [are a] myriad … approaches for detecting a pseudo-randomly generated domain name, including using frequency analysis, Markov chains, entropy, proportion of dictionary words, ratio of vowels to other characters, and more. CDN domains may trigger these detections due to the format of their domain names. In addition to detecting a DGA domain based on the name, another more general approach for detecting a suspicious domain is to check for recently registered names or for rarely visited domains._
+
+
+    _“Machine learning approaches to detecting DGA domains have been developed and have seen success in applications. One approach is to use N-Gram methods to determine a randomness score for strings used in the domain name. If the randomness score is high, and the domains are not whitelisted (CDN, etc), then it may be determined if a domain is related to a legitimate host or DGA. Another approach is to use deep learning to classify domains as DGA-generated.”_
+
+
+    [https://attack.mitre.org/techniques/T1568/002/](https://attack.mitre.org/techniques/T1568/002/)
