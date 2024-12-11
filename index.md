@@ -53,15 +53,9 @@ We currently have a regularly scheduled weekly meeting every two weeks on Thursd
 
 ## Chair
 
-<<<<<<< HEAD
- - John Todd, Quad9
- - Jonathan Spring
- - Peter Lowe
-=======
  - Jonathan Spring, CISA
  - Peter Lowe
  - Swapneel Patnekar, Shreshta IT
->>>>>>> master
 
 ## Founders
 
