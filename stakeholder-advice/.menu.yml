@@ -1,0 +1,12 @@
+---
+- title: DNS Abuse SIG
+  url: /global/sigs/dns
+  nav:
+    - title: DGA Domains
+        url: /global/sigs/dns/stakeholder-advice/detection/dga
+
+    - title: Domain Name Compromise
+        url: /global/sigs/dns/stakeholder-advice/domain-name-compromise
+
+    - title: Lame Delegations
+        url: /global/sigs/dns/stakeholder-advice/lame-delegations
