@@ -11,14 +11,14 @@
     - title: Lame Delegations
         url: /global/sigs/dns/stakeholder-advice/lame-delegations
 
-    - title: Lame Delegations
+    - title: Cache Poisoning
         url: /global/sigs/dns/stakeholder-advice/cache-poisoning
 
-    - title: Lame Delegations
+    - title: DNS Rebinding
         url: /global/sigs/dns/stakeholder-advice/dns-rebinding
 
-    - title: Lame Delegations
+    - title: DNS Server Compromise
         url: /global/sigs/dns/stakeholder-advice/dns-server-compromise
 
-    - title: Lame Delegations
+    - title: Stub Resolver Hijacking
         url: /global/sigs/dns/stakeholder-advice/stub-resolver-hijacking
