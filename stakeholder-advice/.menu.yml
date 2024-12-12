@@ -10,3 +10,15 @@
 
     - title: Lame Delegations
         url: /global/sigs/dns/stakeholder-advice/lame-delegations
+
+    - title: Lame Delegations
+        url: /global/sigs/dns/stakeholder-advice/cache-poisoning
+
+    - title: Lame Delegations
+        url: /global/sigs/dns/stakeholder-advice/dns-rebinding
+
+    - title: Lame Delegations
+        url: /global/sigs/dns/stakeholder-advice/dns-server-compromise
+
+    - title: Lame Delegations
+        url: /global/sigs/dns/stakeholder-advice/stub-resolver-hijacking
