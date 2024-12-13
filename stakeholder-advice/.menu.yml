@@ -1,5 +1,5 @@
 ---
-- title: DNS Abuse SIG
+- title: DNS Abuse SIG - Stakeholder Advice - Detection
   url: /global/sigs/dns
   nav:
     - title: DGA Domains
@@ -10,3 +10,15 @@
 
     - title: Lame Delegations
         url: /global/sigs/dns/stakeholder-advice/lame-delegations
+
+    - title: Cache Poisoning
+        url: /global/sigs/dns/stakeholder-advice/cache-poisoning
+
+    - title: DNS Rebinding
+        url: /global/sigs/dns/stakeholder-advice/dns-rebinding
+
+    - title: DNS Server Compromise
+        url: /global/sigs/dns/stakeholder-advice/dns-server-compromise
+
+    - title: Stub Resolver Hijacking
+        url: /global/sigs/dns/stakeholder-advice/stub-resolver-hijacking
