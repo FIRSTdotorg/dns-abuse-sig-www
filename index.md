@@ -34,7 +34,7 @@ Thanks is given in the document, which is the result of collaboration between ma
 
 ### HTML version
 
-A version has been produced by JP-CERT in HTML form, hosted on GitHub:
+A version has been produced by JPCERT/CC in HTML form, hosted on GitHub:
 
  - <a href="https://firstdotorg.github.io/dns-abuse-sig/">https://firstdotorg.github.io/dns-abuse-sig/</a>
 
