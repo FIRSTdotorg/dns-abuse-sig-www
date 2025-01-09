@@ -32,6 +32,12 @@ The advice currently takes the form of a matrix indicating whether a specific st
 
 Thanks is given in the document, which is the result of collaboration between many people representing a wide of range roles in the DNS industry.
 
+### HTML version
+
+A version has been produced by JP-CERT in HTML form, hosted on GitHub:
+
+ - <a href="https://firstdotorg.github.io/dns-abuse-sig/">https://firstdotorg.github.io/dns-abuse-sig/</a>
+
 ### Japanese Translation
 
 Many thanks to Shoko Nakai for arranging a Japanese translation of this document, available here:
