@@ -13,7 +13,7 @@ Our group has been working on advice to give to stakeholders when dealing with D
 <ul>
 <li><a href="detection/cache-poisoning">Cache Poisoning</a></li>
 <li><a href="detection/dga">DGA Domains</a></li>
-<li><a href="detection/dns-rebinding">DNS Rebinding</a><li>
+<li><a href="detection/dns-rebinding">DNS Rebinding</a></li>
 <li><a href="detection/dns-server-compromise">DNS Server Compromise</a></li>
 <li><a href="detection/domain-name-compromise">Domain Name Compromise</a></li>
 <li><a href="detection/lame-delegations">Lame Delegations</a></li>
