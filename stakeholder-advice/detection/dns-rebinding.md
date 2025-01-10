@@ -1,3 +1,9 @@
+<!--
+---
+title: "DNS Abuse Detection: DNS rebinding"
+...
+-->
+
 # DNS Abuse Detection: DNS rebinding
 
 ## Definition

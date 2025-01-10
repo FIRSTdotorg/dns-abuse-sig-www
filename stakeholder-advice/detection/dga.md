@@ -1,8 +1,13 @@
-DNS Abuse Detection: Domain Generation Algorithms
-=================================================
+<!--
+---
+title: "DNS Abuse Detection: Domain Generation Algorithms"
+...
+-->
 
-Definition
-----------
+## DNS Abuse Detection: Domain Generation Algorithms
+
+
+## Definition
 
 Domain Generation Algorithms (DGAs) allow threat actors to construct and register unique domains very quickly for malicious purposes such as phishing campaigns or malware command and control (C2) that evades filtering. Because DGAs are generated semi-randomly, they have proven difficult to block using blocklists of known “bad” domains. DGAs for the most part are limited only by the DGA operator’s ability to generate domains and register them through registrars.
 
@@ -20,8 +25,7 @@ _“Adversaries may use DGAs for the purpose of Fallback Channels. When contact 
 
 [https://attack.mitre.org/techniques/T1568/002/](https://attack.mitre.org/techniques/T1568/002/)
 
-Advice
-------
+## Advice
 
 Detection of first use of DGA domains is considered beyond the scope of what a “typical” SOC can detect without the help of Cyber Threat Intelligence (CTI) DNS blocklist feeds, subscribing to a Response Policy Zone (RPZ), or using a Protective DNS solution.
 
@@ -33,8 +37,7 @@ _“Machine learning approaches to detecting DGA domains have been developed and
 
 [https://attack.mitre.org/techniques/T1568/002/](https://attack.mitre.org/techniques/T1568/002/)
 
-Examples
---------
+## Examples
 
 DGAs and the domains that they produce vary widely depending on their planned usage, typically for phishing or malware C2, and how stealthy they are trying to be.  As a result, there is no one definitive method to determine if an observed domain has been created by a DGA.
 
@@ -54,8 +57,7 @@ This technique was used in a spear phishing campaign that was reported by the IR
 
 **.monster TLD:** backstabbing\[.\]monster bellflower\[.\]monster carousel\[.\]monster
 
-Further Reading
----------------
+## Further Reading
 
 *   “Dynamic Resolution: Domain Generation Algorithms” [https://attack.mitre.org/techniques/T1568/002/](https://attack.mitre.org/techniques/T1568/002/)
     

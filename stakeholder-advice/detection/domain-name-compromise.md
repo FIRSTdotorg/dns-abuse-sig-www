@@ -1,3 +1,9 @@
+<!--
+---
+title: "DNS Abuse Detection: Domain name compromise"
+...
+-->
+
 # DNS Abuse Detection: Domain name compromise
 
 ## Definition

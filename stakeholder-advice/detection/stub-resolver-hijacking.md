@@ -1,3 +1,9 @@
+<!--
+---
+title: "DNS Abuse Detection: Stub resolver hijacking"
+...
+-->
+
 # DNS Abuse Detection: Stub resolver hijacking
 
 ## Definition

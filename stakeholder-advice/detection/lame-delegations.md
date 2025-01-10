@@ -1,3 +1,9 @@
+<!--
+---
+title: "DNS Abuse Detection: Lame delegations"
+...
+-->
+
 # DNS Abuse Detection: Lame delegations
 
 ## Definition

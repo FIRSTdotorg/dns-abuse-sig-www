@@ -1,3 +1,9 @@
+<!--
+---
+title: "DNS Abuse Detection: Local recursive resolver hijacking"
+...
+-->
+
 # DNS Abuse Detection: Local recursive resolver hijacking
 
 ## Definition
