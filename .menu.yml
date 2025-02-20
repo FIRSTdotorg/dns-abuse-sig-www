@@ -11,6 +11,8 @@
                 url: /global/sigs/dns/stakeholder-advice/detection/cache-poisoning
             - title: DGA Domains
                 url: /global/sigs/dns/stakeholder-advice/detection/dga
+            - title: DNS As a Vector for DoS
+                url: /global/sigs/dns/stakeholder-advice/detection/dns-as-a-vector-for-dos
             - title: DNS Rebinding
                 url: /global/sigs/dns/stakeholder-advice/detection/dns-rebinding
             - title: DNS Server Compromise
