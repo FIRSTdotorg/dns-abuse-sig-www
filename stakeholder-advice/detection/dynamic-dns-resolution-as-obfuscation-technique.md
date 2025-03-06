@@ -1,3 +1,9 @@
+<!--
+---
+title: "DNS Abuse Detection: Dynamic DNS Resolution (as obfuscation technique)"
+...
+-->
+
 # Dynamic DNS Resolution (as obfuscation technique)
 
 ### Definition
