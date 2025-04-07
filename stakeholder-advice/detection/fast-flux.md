@@ -1,10 +1,10 @@
 <!--
 ---
-title: "Dynamic DNS resolution: Fast flux (as obfuscation technique"
+title: "Fast Flux (as obfuscation technique"
 ...
 -->
 
-# Dynamic DNS resolution: Fast flux (as obfuscation technique)
+# Fast Flux (as obfuscation technique)
 
 ### Definition
 

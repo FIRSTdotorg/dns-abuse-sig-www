@@ -23,7 +23,7 @@
                 url: /global/sigs/dns/stakeholder-advice/detection/domain-name-compromise
             - title: Dynamic DNS (as obfuscation technique)
                 url: /global/sigs/dns/stakeholder-advice/detection/dynamic-dns-resolution-as-obfuscation-technique
-            - title: Fast Flux
+            - title: Fast Flux (as obfuscation technique)
                 url: /global/sigs/dns/stakeholder-advice/detection/fast-flux
             - title: Lame Delegations
                 url: /global/sigs/dns/stakeholder-advice/detection/lame-delegations
