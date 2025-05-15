@@ -31,6 +31,8 @@
                 url: /global/sigs/dns/stakeholder-advice/detection/lame-delegations
             - title: Local Resolver Hijacking
                 url: /global/sigs/dns/stakeholder-advice/detection/local-resolver-hijacking
+            - title: Malicious registration of (effective) second level domains
+                url: /global/sigs/dns/stakeholder-advice/detection/malicious-registration-of-effective-second-level-domains
             - title: On-path DNS Attack
                 url: /global/sigs/dns/stakeholder-advice/detection/on-path-dns-attack
             - title: Stub Resolver Hijacking
