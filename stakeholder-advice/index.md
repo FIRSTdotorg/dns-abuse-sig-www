@@ -17,6 +17,7 @@ Our group has been working on advice to give to stakeholders when dealing with D
 <li><a href="detection/dns-as-a-vector-for-dos">DNS as a Vector for DoS</a></li>
 <li><a href="detection/dns-rebinding">DNS Rebinding</a></li>
 <li><a href="detection/dns-server-compromise">DNS Server Compromise</a></li>
+<li><a href="detection/dns-tunneling">DNS Tunneling</a></li>
 <li><a href="detection/domain-name-compromise">Domain Name Compromise</a></li>
 <li><a href="detection/dos-against-the-dns">DoS Against the DNS</a></li>
 <li><a href="detection/dynamic-dns-resolution-as-obfuscation-technique">Dynamic DNS Resolution (as obfucsation technique)</a></li>

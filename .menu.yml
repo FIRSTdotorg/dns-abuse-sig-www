@@ -19,6 +19,8 @@
                 url: /global/sigs/dns/stakeholder-advice/detection/dns-rebinding
             - title: DNS Server Compromise
                 url: /global/sigs/dns/stakeholder-advice/detection/dns-server-compromise
+            - title: DNS Tunneling
+                url: /global/sigs/dns/stakeholder-advice/detection/dns-tunneling
             - title: DoS Against the DNS
                 url: /global/sigs/dns/stakeholder-advice/detection/dos-against-the-dns
             - title: Domain Name Compromise
