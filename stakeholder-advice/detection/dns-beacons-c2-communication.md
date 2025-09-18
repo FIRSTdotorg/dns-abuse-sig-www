@@ -1,9 +1,9 @@
-<!---
+<!--
 ---
-title: "FIRST DNS Abuse SIG: Stakeholder Advice"
+title: "DNS Abuse Detection: DNS Beacons - C2 Communication"
 ...
 -->
-# DNS beacons - C2 communication
+# DNS Beacons - C2 Communication
 
 ## Definition
 
