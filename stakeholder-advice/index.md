@@ -13,6 +13,7 @@ Our group has been working on advice to give to stakeholders when dealing with D
 <ul>
 <li><a href="detection/cache-poisoning">Cache Poisoning</a></li>
 <li><a href="detection/creation-of-malicious-subdomains-under-dynamic-dns-providers">Creation of Malicious Subdomains Under Dynamic DNS Providers</a></li>
+<li><a href="detection/dns-beacons-c2-communication">DNS Beacons - C2 Communication</a></li>
 <li><a href="detection/dga">DGA Domains</a></li>
 <li><a href="detection/dns-as-a-vector-for-dos">DNS as a Vector for DoS</a></li>
 <li><a href="detection/dns-rebinding">DNS Rebinding</a></li>

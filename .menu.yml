@@ -11,6 +11,8 @@
                 url: /global/sigs/dns/stakeholder-advice/detection/cache-poisoning
             - title: Creation of Malicious Subdomains Under Dynamic DNS Providers
                 url: /global/sigs/dns/stakeholder-advice/detection/creation-of-malicious-subdomains-under-dynamic-dns-providers
+            - title: DNS Beacons - C2 Communication
+                url: /global/sigs/dns/stakeholder-advice/detection/dns-beacons-c2-communication
             - title: DGA Domains
                 url: /global/sigs/dns/stakeholder-advice/detection/dga
             - title: DNS As a Vector for DoS
