@@ -59,7 +59,6 @@ We currently have a regularly scheduled weekly meeting every two weeks on Thursd
 
 ## Chair
 
- - Jonathan Spring, CISA
  - Peter Lowe
  - Vinzenz Vogel, SWITCH
 
