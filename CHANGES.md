@@ -1,6 +1,6 @@
 <!--
 ---
-title:  FIRST DNS Abuse SIG: CHANGES file
+title: "FIRST DNS Abuse SIG: CHANGES file"
 ...
 -->
 # CHANGES.md
