@@ -8,18 +8,19 @@ title:  FIRST DNS Abuse SIG
 
 ## Mission
 
-The Domain Name System (DNS) is a critical part of the Internet, including mapping domain names to IP addresses. Malicious threat actors use domain names, their corresponding technical resources, and other parts of the DNS infrastructure, including its protocols, for their malicious cyber operations. CERTs are confronted with reported DNS Abuse on a continuous basis, and rely heavily on DNS analysis and infrastructure to protect their constituencies. Understanding the international customary norms applicable for detecting and mitigating DNS Abuse from the perspective of the global incident response community is critical for the open Internet’s stability, security and resiliency. 
+The Domain Name System (DNS) is a critical part of the Internet, including mapping domain names to IP addresses. Malicious threat actors use domain names, their corresponding technical resources, and other parts of the DNS infrastructure, including its protocols, for their malicious cyber operations. CERTs are confronted with reported DNS Abuse on a continuous basis, and rely heavily on DNS analysis and infrastructure to protect their constituencies. Understanding the international customary norms applicable for detecting and mitigating DNS Abuse from the perspective of the global incident response community is critical for the open Internet’s stability, security and resiliency.
+
+The mission of the DNS Abuse SIG is to aid incident responders and security teams with the language and essential knowledge to combat DNS Abuse.
 
 
 ## Goals & Deliverables
 
-1. Initially, provide a common language and a FIRST-definition of what the global incident response community understands as DNS Abuse in an operational context to protect its constituencies, as well as for purposes of global policy recommendations. 
-2. Develop a classification scheme for DNS Abuse.
+1. Provide a common language and a FIRST-definition of what the global incident response community understands as DNS Abuse in an operational context to protect its constituencies, as well as for purposes of global policy recommendations. 
+2. Develop and maintain a classification scheme for DNS Abuse.
 3. Identify common tools, techniques, and practices of malicious DNS Abuse threat actors.
-4. Identify the relevant stakeholders for DNS Abuse mitigation and facilitate reasonable cooperation to mitigate DNS Abuse, including possibly recommending certain provisions be adopted in applicable registration agreements to facilitate voluntary cooperation in curbing DNS Abuse.
-5. Outline possible best practices for further discussion of how to effectively mitigate DNS Abuse.
-6. Outline possible best practices for each of the relevant stakeholders.s.
-7. Organize and/or participate in meetings or conferences on DNS Abuse, and possibly deliver relevant presentations, or coordinate their delivery as reasonably necessary in furtherance of the goals outlined above.
+4. Identify the relevant stakeholders for DNS Abuse detection, prevention, and mitigation.
+5. Outline possible best practices for effective detection, prevention, and mitigation of DNS Abuse for the relevant stakeholders.
+7. Organize and/or participate in meetings, conferences, and other events on DNS Abuse.
 
 
 ## DNS Abuse Techniques Matrix
