@@ -4,7 +4,7 @@ title: "DNS Abuse Detection: DNS Tunneling - Tunneling Another Protocol Over DNS
 ...
 -->
 
-# DNS Abuse Detection: DNS tunneling \- tunneling another protocol over DNS
+# DNS Abuse Detection: DNS tunneling
 
 ### Definition
 

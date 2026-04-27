@@ -4,11 +4,13 @@ title: "Fast Flux (as obfuscation technique"
 ...
 -->
 
-# Fast Flux (as obfuscation technique)
+# Fast flux
 
 ### Definition
 
 DNS fast flux is a technique where the resource records of a domain are rapidly updated to avoid detection and takedown. Fast flux is used by botnets, command and control servers, to hide phishing sites, and generally to provide resilience to malicious resources.
+
+**Note:** there are sometimes legitimate reasons for the use of fast flux, for example with CDNs or load balancers, but here we assume that the intent is malicious.
 
 IP reputation can be affected by fast flux. As an example, when a fully qualified domain name (FQDN) using fast flux resolves to IP addresses of well-known service providers, the domain gains a positive reputation score and is less likely to be blocked by DNS firewalls or other filtering techniques.  The malware controllers can then temporarily resolve the FQDN to the IP address they use for their attack.
 

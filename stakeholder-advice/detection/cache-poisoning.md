@@ -4,11 +4,11 @@ title: "DNS Abuse Detection: Cache Poisoning"
 ...
 -->
 
-# DNS Abuse Detection: Cache Poisoning
+# DNS Abuse Detection: DNS Cache Poisoning
 
 ## Definition
 
-DNS cache poisoning – also known as DNS spoofing – is a type of cyber attack in which an  attacker corrupts a DNS resolver's cache by injecting false DNS records, causing the resolver to return incorrect responses that are controlled by the attacker \- usually for redirecting users or machines to malicious resources like phishing pages or attacker-controlled proxies.
+DNS cache poisoning – also known as DNS spoofing – is a type of cyber attack in which an attacker corrupts a DNS resolver's cache by injecting false DNS records, causing the resolver to return incorrect responses that are controlled by the attacker \- usually for redirecting users or machines to malicious resources like phishing pages or attacker-controlled proxies.
 
 CAPEC entry: [https://capec.mitre.org/data/definitions/142.html](https://capec.mitre.org/data/definitions/142.html)
 
