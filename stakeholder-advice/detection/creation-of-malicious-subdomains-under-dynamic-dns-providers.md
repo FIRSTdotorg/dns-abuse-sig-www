@@ -7,19 +7,11 @@ title: "DNS Abuse Detection: Creation of Malicious Subdomains Under Dynamic DNS 
 
 ## Definition
 
-Malicious registration of domains is the creation of new domains by threat actors online.
+Dynamic DNS (DDNS) works by keeping the DNS updated with the correct IP address for a domain. Dynamic DNS providers typically also provide the ability to create subdomains under existing domains.
 
-This technique is when someone who is going to do a bad thing registers a domain themselves. It is distinguished from an actor stealing, compromising, taking over, or otherwise hijacking DNS resources.
+Before attacking a victim, adversaries purchase or create domains from an entity other than a registrar or registry a Dynamic DNS provider that provides these subdomains.
 
-Before attacking a victim, adversaries purchase or create domains from an entity other than a registrar or registry that provides subdomains under domains they own and control. See also the [entry on Wikipedia](https://en.wikipedia.org/wiki/Dynamic_DNS).
-
-[Dynamic DNS](https://www.cloudflare.com/en-gb/learning/dns/glossary/dynamic-dns/) is a legitimate online service for many end users. However, because the IP addresses are dynamic and the dynamic DNS services are free or relatively cheap, dynamic DNS services are commonly used to enable other attacks such as phishing, fast-flux, or malware command and control.
-
-Many online resources, such as file servers, APIs, or web servers, run on internet connections that have their IP addresses changed frequently. This creates a problem if the operators of those endpoints want to give a hosted resource a specific domain name. Dynamic DNS works by keeping the DNS updated with the correct IP address.
-
-For example, if a web administrator is operating a website with a domain name of www.example.com and an IP address of 192.0.2.0, any time a user enters www.example.com into their browser, the DNS will direct them to the server at 192.0.2.0. If the server changes its IP address (e.g. if it was updated by the ISP), a dynamic DNS service can automatically update the DNS record to reflect this change.
-
-Dynamic DNS enables the threat actors to launch phishing, malware etc campaigns without registering for a domain name with an entity covered by, for example, [the ICANN terms of use](https://www.icann.org/en/contracted-parties/accredited-registrars/resources/agreements-and-policies). 
+Dynamic DNS enables the threat actors to launch phishing, malware etc campaigns without registering for a domain name with an entity covered by, for example, the ICANN terms of use. 
 
 Dynamic DNS providers are one source of domains for threat actors. Like some registrars, dynamic DNS providers often have an API to programmatically generate subdomains to make it easy and efficient to create many domains. Threat actors use this capability to launch campaigns with highly scalable numbers of fully qualified domains.
 
