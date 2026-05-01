@@ -30,5 +30,5 @@ Our group has been working on advice to give to stakeholders when dealing with D
 <li><a href="detection/on-path-dns-attack">On-Path DNS Attack</a></li>
 <li><a href="detection/stub-resolver-hijacking">Stub Resolver Hijacking</a></li>
 <li><a href="detection/spoofing-of-a-registered-domain">Spoofing of a Registered Domain</a></li>
-<li><a href="detection/spoofing-of-unregistered-domains">Spoofing of Unregistered Domains</a></li>
+<li><a href="detection/use-of-an-unregistered-domain">Use of an Unregistered Domain</a></li>
 </ul>

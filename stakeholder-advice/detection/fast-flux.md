@@ -1,6 +1,6 @@
 <!--
 ---
-title: "Fast Flux (as obfuscation technique"
+title: "Fast Flux"
 ...
 -->
 
