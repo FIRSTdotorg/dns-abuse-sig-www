@@ -3,7 +3,7 @@
   url: /global/sigs/dns
   nav:
     - title: DNS Abuse Techniques Matrix
-      url: /global/sigs/dns/DNS-Abuse-Techniques-Matrix_v1.1.pdf
+      url: /global/sigs/dns/DNS-Abuse-Techniques-Matrix_v1.3.pdf
     - title: Stakeholder Advice
       url: /global/sigs/dns/stakeholder-advice/
       nav:    
