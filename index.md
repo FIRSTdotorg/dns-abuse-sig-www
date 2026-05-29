@@ -41,7 +41,7 @@ A version has been produced by JPCERT/CC in HTML form, hosted on GitHub:
 
 ### Japanese Translation
 
-We have a Japanese version of the document available here:
+We have a Japanese version of v1.1 of the document available here:
 
  -  <a href="DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf">DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf</a>
 
