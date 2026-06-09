@@ -15,7 +15,7 @@ The mission of the DNS Abuse SIG is to aid incident responders and security team
 
 ## Goals & Deliverables
 
-1. Provide globally-accessible descriptions and definitions of DNS Abuse in an operational context for purposes of global policy recommendations.
+1. Provide a common language and a FIRST-definition of what the global incident response community understands as DNS Abuse in an operational context to protect its constituencies, as well as for purposes of global policy recommendations.
 2. Develop and maintain a classification scheme for DNS Abuse.
 3. Identify common tools, techniques, and practices of malicious DNS Abuse threat actors.
 4. Identify the relevant stakeholders for DNS Abuse detection, prevention, and mitigation.
