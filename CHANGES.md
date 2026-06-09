@@ -7,6 +7,25 @@ title: "FIRST DNS Abuse SIG: CHANGES file"
 
 This file should record changes worth mentioning from the SIG and its meetings. No particular rules, just what seems appropriate to record. Entries should be in reverse chronological order.
 
+# 2026-06-09
+Updates to the HTML version of the DNS Abuse Techniques Matrix:
+
+1) Renamed "Dynamic DNS Resolution (as obfuscation technique)" to "Obfuscation via Dynamic DNS".
+
+2) Updated the definition in the GitHub techniques to reference the Stakeholder Advice First Portal.
+
+https://firstdotorg.github.io/dns-abuse-sig/techniques/
+
+# 2026-05-29
+Published v1.3 of the DNS Abuse Techniques Matrix.
+
+# 2026-05-28
+Reviewed and updated the definition of CSIRT in the Matrix according to the CSIRT Framework definition. Removed ISAC from the definition. Updated links related to CSIRTs.
+
+Fixed row splitting in tables in the Matrix.
+
+Adjusted dates, headers, footers. Still a bit rubbish but hey, we're not experts in Google Docs.
+
 ## 2026-04-30
 Renamed "Spoofing or otherwise using unregistered domain names" to "Use of an unregistered domain" and updated the definition to remove references to spoofing.
 
