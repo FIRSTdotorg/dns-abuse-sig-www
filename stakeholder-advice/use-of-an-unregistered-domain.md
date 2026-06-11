@@ -1,6 +1,6 @@
 <!--
 ---
-title: "DNS Abuse Detection: Use of an Unregistered Domain
+title: "DNS Abuse Detection: Use of an Unregistered Domain"
 ...
 -->
 # DNS Abuse Detection: Spoofing or otherwise using unregistered domain names
