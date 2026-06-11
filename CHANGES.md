@@ -7,6 +7,15 @@ title: "FIRST DNS Abuse SIG: CHANGES file"
 
 This file should record changes worth mentioning from the SIG and its meetings. No particular rules, just what seems appropriate to record. Entries should be in reverse chronological order.
 
+# 2026-06-11
+Updated the stakeholder advice section:
+
+1) Moved all stakeholder advice documents out of the "detection" subfolder and into the main "stakeholder-advice" folder.
+
+2) Updated stakeholder advice links and left navigation to use the flattened URLs.
+
+3) Added related advice links between stakeholder advice documents.
+
 # 2026-06-09
 Updates to the HTML version of the DNS Abuse Techniques Matrix:
 
@@ -79,4 +88,3 @@ Created CHANGES.md (yes, after the first change!)
 
 ## 2026-01-22
 Finished going through the TODO list.
-
