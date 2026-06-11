@@ -70,7 +70,7 @@ Some examples of detection techniques can be seen in this article by Shoko Nakai
 - [Wayback Machine](https://wayback.archive.org/) for checking website history  
 - Certificate Transparency (CT) logs \- monitoring CT logs can uncover subdomain names added in the parent if the threat actor requests for a TLS certificate.
 
-## Related Advice
+## See Also
 
 - [DNS server compromise](dns-server-compromise)
 - [DNS Cache Poisoning](cache-poisoning)

@@ -63,7 +63,7 @@ Investigation of the DNS server system logs and resource usage for evidence of u
 - Gather information on what kind of attacks are being launched against DNS currently through community channels  
 - In case of outsourced DNS, check with your provider to see what resources or information they might have
 
-## Related Advice
+## See Also
 
 - [DNS as a vector for DoS](dns-as-a-vector-for-dos)
 - [Use of an Unregistered Domain](use-of-an-unregistered-domain)

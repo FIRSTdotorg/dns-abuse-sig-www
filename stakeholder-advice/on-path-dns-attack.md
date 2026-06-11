@@ -44,7 +44,7 @@ From the Snowden leaks we know that NSA has the capability to perform similar at
 - SSL certificate details from browsers can be examined  
 - IP reputation lists can be used to potentially highlight manipulated results, if a query reply includes an IP that has been flagged as malicious unexpectedly
 
-## Related Advice
+## See Also
 
 - [DNS Cache Poisoning](cache-poisoning)
 - [Local recursive resolver hijacking](local-resolver-hijacking)

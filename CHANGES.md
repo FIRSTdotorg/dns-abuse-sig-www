@@ -14,7 +14,9 @@ Updated the stakeholder advice section:
 
 2) Updated stakeholder advice links and left navigation to use the flattened URLs.
 
-3) Added related advice links between stakeholder advice documents.
+3) Added "See Also" links between stakeholder advice documents.
+
+4) Updated the stakeholder advice index heading from "Detection of DNS Abuse" to "DNS Abuse Technique Types".
 
 # 2026-06-09
 Updates to the HTML version of the DNS Abuse Techniques Matrix:

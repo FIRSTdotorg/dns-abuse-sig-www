@@ -44,7 +44,7 @@ The support sections of major dynamic DNS service providers can often include of
 3. Public Suffix List \- [https://publicsuffix.org/list/public\_suffix\_list.dat](https://publicsuffix.org/list/public_suffix_list.dat)  
 4. One example of a major provider’s domains \- [https://help.dyn.com/list-of-dyn-dns-pro-remote-access-domain-names/](https://help.dyn.com/list-of-dyn-dns-pro-remote-access-domain-names/)
 
-## Related Advice
+## See Also
 
 - [Creation of Malicious Subdomains Under Dynamic DNS Providers](creation-of-malicious-subdomains-under-dynamic-dns-providers)
 - [Fast flux](fast-flux)

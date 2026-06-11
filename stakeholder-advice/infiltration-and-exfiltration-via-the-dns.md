@@ -47,7 +47,7 @@ Because infiltration and exfiltration is a malware technique, security teams mig
 * [MITRE \- Exfiltration Over Alternative Protocol](https://attack.mitre.org/techniques/T1048/)  
 * [DNSxD: Detecting Data Exfiltration over DNS](https://pureadmin.qub.ac.uk/ws/portalfiles/portal/161785678/1570493592_CameraReady.pdf) \- from Queen’s University Belfast 
 
-## Related Advice
+## See Also
 
 - [DNS tunneling](dns-tunneling)
 - [DNS Beacons - C2 Communication](dns-beacons-c2-communication)

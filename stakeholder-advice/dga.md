@@ -68,7 +68,7 @@ This technique was used in a spear phishing campaign that was reported by the IR
 
 - “Domain Generation Algorithms (DGAs) of Malware reimplemented in Python”.[https://github.com/baderj/domain\_generation\_algorithms](https://github.com/baderj/domain_generation_algorithms)
 
-## Related Advice
+## See Also
 
 - [Malicious registration of (effective) second level domains](malicious-registration-of-effective-second-level-domains)
 - [Use of an Unregistered Domain](use-of-an-unregistered-domain)

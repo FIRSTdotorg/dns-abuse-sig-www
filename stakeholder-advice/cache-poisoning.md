@@ -62,7 +62,7 @@ Route53 BGP attack, attackers pretended to be Route53 authoritative servers
 - DNSSEC validation logs  
 - [https://www.internetsociety.org/deploy360/dnssec/tools/](https://www.internetsociety.org/deploy360/dnssec/tools/)
 
-## Related Advice
+## See Also
 
 - [On-path DNS attack](on-path-dns-attack)
 - [DNS server compromise](dns-server-compromise)

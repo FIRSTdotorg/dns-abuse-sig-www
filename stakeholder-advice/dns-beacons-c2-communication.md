@@ -41,7 +41,7 @@ DNS query logs on authorized resolvers can be used for the purposes detailed abo
 
 Netskope has a white paper on [detecting C2 beaconing](https://www.netskope.com/resources/white-papers/effective-c2-beaconing-detection-white-paper).  
 
-## Related Advice
+## See Also
 
 - [DGA domains](dga)
 - [Fast flux](fast-flux)

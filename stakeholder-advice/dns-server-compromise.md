@@ -34,7 +34,7 @@ Details from Google Security about potentially state-sponsored hijacking via com
 * DNS resolver logs  
 * Server access logs
 
-## Related Advice
+## See Also
 
 - [Domain name compromise](domain-name-compromise)
 - [DNS Cache Poisoning](cache-poisoning)

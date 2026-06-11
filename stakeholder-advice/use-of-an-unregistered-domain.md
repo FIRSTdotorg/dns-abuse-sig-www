@@ -39,7 +39,7 @@ Malware may try to hide legitimate C2 domains inside a collection of unregistere
 
 DNS query logs showing NX responses.  
 
-## Related Advice
+## See Also
 
 - [Spoofing of a registered domain](spoofing-of-a-registered-domain)
 - [DGA domains](dga)

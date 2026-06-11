@@ -50,7 +50,7 @@ Manually check hosts files and DNS resolver configurations for unexpected modifi
 - Good overview of stub resolver hijacking from Vercara  
   [https://vercara.com/resources/stub-resolver-hijacking](https://vercara.com/resources/stub-resolver-hijacking)
 
-## Related Advice
+## See Also
 
 - [Local recursive resolver hijacking](local-resolver-hijacking)
 - [On-path DNS attack](on-path-dns-attack)

@@ -32,7 +32,7 @@ Configuring DNS over HTTPS in a browser and comparing views may also show indica
 
 [https://techcrunch.com/2019/05/22/tp-link-routers-vulnerable-remote-hijack/](https://techcrunch.com/2019/05/22/tp-link-routers-vulnerable-remote-hijack/)
 
-## Related Advice
+## See Also
 
 - [Stub resolver hijacking](stub-resolver-hijacking)
 - [On-path DNS attack](on-path-dns-attack)

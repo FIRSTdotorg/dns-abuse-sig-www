@@ -33,7 +33,7 @@ SpaceX Starlink Wi-Fi router GEN 2 before 2023.53.0 and Starlink Dish before 07d
 
 [https://hackerone.com/reports/1379656](https://hackerone.com/reports/1379656)
 
-## Related Advice
+## See Also
 
 - [On-path DNS attack](on-path-dns-attack)
 - [Local recursive resolver hijacking](local-resolver-hijacking)

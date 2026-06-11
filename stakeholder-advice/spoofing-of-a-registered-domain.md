@@ -40,7 +40,7 @@ Malicious actors may also update hosts files to make legitimate domains go to ma
 * [RFC 7489](https://datatracker.ietf.org/doc/html/rfc7489)  
 * [Certificate Authority Transparency](https://certificate.transparency.dev/howctworks/)
 
-## Related Advice
+## See Also
 
 - [Use of an Unregistered Domain](use-of-an-unregistered-domain)
 - [Malicious registration of (effective) second level domains](malicious-registration-of-effective-second-level-domains)

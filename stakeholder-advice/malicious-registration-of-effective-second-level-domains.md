@@ -56,10 +56,9 @@ MITRE’s entry for “Acquire Infrastructure: Domains” has a [good list of ex
 * [MITRE entry for “Acquire Infrastructure: Domains”](https://attack.mitre.org/techniques/T1583/001/)  
 * [Newly Registered Domains blocklist](https://github.com/xRuffKez/NRD)
 
-## Related Advice
+## See Also
 
 - [DGA domains](dga)
 - [Creation of Malicious Subdomains Under Dynamic DNS Providers](creation-of-malicious-subdomains-under-dynamic-dns-providers)
 - [Spoofing of a registered domain](spoofing-of-a-registered-domain)
 - [Fast flux](fast-flux)
-

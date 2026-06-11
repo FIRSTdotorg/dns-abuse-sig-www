@@ -35,7 +35,7 @@ Deploy DNSSEC to stop rogue nameservers taking over lame delegations. Do note ho
 - [https://dnsviz.net/](https://dnsviz.net/) for checking NS records (and much more)  
 - [https://github.com/google/broken-dns](https://github.com/google/broken-dns) for checking lame delegation at scale
 
-## Related Advice
+## See Also
 
 - [DNS server compromise](dns-server-compromise)
 - [Domain name compromise](domain-name-compromise)

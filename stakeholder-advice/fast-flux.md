@@ -59,7 +59,7 @@ The topic received attention and recommendations from the ICANN security and sta
 * [https://media.blackhat.com/us-13/US-13-Xu-New-Trends-in-FastFlux-Networks-Slides.pdf](https://media.blackhat.com/us-13/US-13-Xu-New-Trends-in-FastFlux-Networks-Slides.pdf)  
   [https://www.researchgate.net/publication/350402517\_Research\_and\_Detection\_of\_Fast-flux\_Botnet](https://www.researchgate.net/publication/350402517_Research_and_Detection_of_Fast-flux_Botnet)
 
-## Related Advice
+## See Also
 
 - [DGA domains](dga)
 - [DNS Beacons - C2 Communication](dns-beacons-c2-communication)

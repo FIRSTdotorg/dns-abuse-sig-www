@@ -55,7 +55,7 @@ One indicator of an amplification attack is a large number of queries types such
 * DNS query logs and DNS server system logs can be used for manual checking, or fed into systems to identify DoS attacks, particularly in cases of application vulnerabilities  
 * Gather information on what kind of attacks are being launched against DNS currently through community channels
 
-## Related Advice
+## See Also
 
 - [DoS Against the DNS](dos-against-the-dns)
 - [Use of an Unregistered Domain](use-of-an-unregistered-domain)

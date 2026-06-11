@@ -51,7 +51,7 @@ An excellent and very thorough paper on detecting DNS tunneling is recommended h
 
 A description of DNS Tunneling and how it can be abused: [DNS Tunneling: how DNS can be (ab)used by malicious actors (paloaltonetworks.com)](https://unit42.paloaltonetworks.com/dns-tunneling-how-dns-can-be-abused-by-malicious-actors/)   
 
-## Related Advice
+## See Also
 
 - [Infiltration and exfiltration via the DNS](infiltration-and-exfiltration-via-the-dns)
 - [DNS Beacons - C2 Communication](dns-beacons-c2-communication)
