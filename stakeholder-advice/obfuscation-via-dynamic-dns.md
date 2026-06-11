@@ -14,9 +14,9 @@ Many online resources, such as file servers, APIs, or web servers, run on intern
 
 For example, if a web administrator is operating a website with a domain name of www.example.com and an IP address of 192.0.2.0, any time a user enters www.example.com into their browser, the DNS will direct them to the server at 192.0.2.0. If the server changes its IP address (e.g. if it was updated by the ISP), a dynamic DNS service can automatically update the DNS record to reflect this change.
 
-Dynamic DNS (DDNS) is a legitimate online service for many end users. However, because the IP addresses are dynamic and the DDNS services are free or relatively cheap, DDNS services are commonly used to enable other attacks such as phishing, fast-flux, or malware command and control.
+Dynamic DNS (DDNS) is a legitimate online service for many end users. However, because the IP addresses are dynamic and the DDNS services are free or relatively cheap, DDNS services are commonly used to enable other attacks such as phishing, [fast-flux](fast-flux), or malware command and control.
 
-This can be used as an obfuscation technique to allow malicious actors to avoid detection by regularly changing their IP addresses. It differs from fast-flux in speed and aggressiveness - where fast-flux is constant, rapidly changing addresses, using Dynamic DNS updates less frequently.
+This can be used as an obfuscation technique to allow malicious actors to avoid detection by regularly changing their IP addresses. It differs from [fast-flux](fast-flux) in speed and aggressiveness - where fast-flux is constant, rapidly changing addresses, using Dynamic DNS updates less frequently.
 
 (Adapted from: https://www.cloudflare.com/en-gb/learning/dns/glossary/dynamic-dns/)
 
@@ -44,3 +44,9 @@ The support sections of major dynamic DNS service providers can often include of
 3. Public Suffix List \- [https://publicsuffix.org/list/public\_suffix\_list.dat](https://publicsuffix.org/list/public_suffix_list.dat)  
 4. One example of a major provider’s domains \- [https://help.dyn.com/list-of-dyn-dns-pro-remote-access-domain-names/](https://help.dyn.com/list-of-dyn-dns-pro-remote-access-domain-names/)
 
+## Related Advice
+
+- [Creation of Malicious Subdomains Under Dynamic DNS Providers](creation-of-malicious-subdomains-under-dynamic-dns-providers)
+- [Fast flux](fast-flux)
+- [DNS Beacons - C2 Communication](dns-beacons-c2-communication)
+- [Malicious registration of (effective) second level domains](malicious-registration-of-effective-second-level-domains)

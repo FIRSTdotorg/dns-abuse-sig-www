@@ -10,7 +10,7 @@ title: "DNS Abuse Detection: DNS Tunneling - Tunneling Another Protocol Over DNS
 
 DNS tunneling is the use of the DNS network protocols to encapsulate other protocols. Tunneling is a process in which the client encodes and sends requests and responses to a server that accepts DNS requests, which will translate or decode the DNS traffic and convert it to the target protocol. DNS tunneling can be used for command and control (“C2” or” C&C”) communication and as a functional equivalent of a Virtual Private Network.
 
-DNS tunneling could be used for [exfiltration and infiltration](https://docs.google.com/document/d/1AZLd0yoi_JATRyVxsIfwPh3_I-UKnJtVkAbfZGcJhhw/edit?tab=t.0#heading=h.foa9ka5fpexn). Exfiltration and infiltration of information via the DNS has been separated into another section in order to address the different approaches in detection and prevention.
+DNS tunneling could be used for [exfiltration and infiltration](infiltration-and-exfiltration-via-the-dns). Exfiltration and infiltration of information via the DNS has been separated into another section in order to address the different approaches in detection and prevention.
 
 ### Advice
 
@@ -50,3 +50,9 @@ CISA wrote a really good guide on implementing enterprise DNS in order to detect
 An excellent and very thorough paper on detecting DNS tunneling is recommended here: [https://www.giac.org/paper/gcia/1116/detecting-dns-tunneling/108367](https://www.giac.org/paper/gcia/1116/detecting-dns-tunneling/108367)
 
 A description of DNS Tunneling and how it can be abused: [DNS Tunneling: how DNS can be (ab)used by malicious actors (paloaltonetworks.com)](https://unit42.paloaltonetworks.com/dns-tunneling-how-dns-can-be-abused-by-malicious-actors/)   
+
+## Related Advice
+
+- [Infiltration and exfiltration via the DNS](infiltration-and-exfiltration-via-the-dns)
+- [DNS Beacons - C2 Communication](dns-beacons-c2-communication)
+- [DGA domains](dga)

@@ -13,7 +13,7 @@ title: "DNS Abuse Detection: Lame delegations"
 [https://blog.apnic.net/2021/03/16/the-prevalence-persistence-perils-of-lame-nameservers/](https://blog.apnic.net/2021/03/16/the-prevalence-persistence-perils-of-lame-nameservers/).  
 [https://kb.isc.org/docs/lame-servers-what-are-they-and-how-does-bind-deal-with-them, What are Lame Servers? (isc.org)](https://kb.isc.org/docs/lame-servers-what-are-they-and-how-does-bind-deal-with-them)
 
-**Note:** these are also known as “dangling delegations”, which is the most common form of attack involving lame delegations. It’s also possible that lame delegations might help to enable DoS attacks or compromises, which are covered elsewhere.
+**Note:** these are also known as “dangling delegations”, which is the most common form of attack involving lame delegations. It’s also possible that lame delegations might help to enable [DoS attacks](dos-against-the-dns) or [compromises](domain-name-compromise), which are covered elsewhere.
 
 ## Advice
 
@@ -34,3 +34,9 @@ Deploy DNSSEC to stop rogue nameservers taking over lame delegations. Do note ho
 - [https://www.apnic.net/manage-ip/manage-resources/reverse-dns/lame-dns-reverse-delegation/lame-delegation-test/](https://www.apnic.net/manage-ip/manage-resources/reverse-dns/lame-dns-reverse-delegation/lame-delegation-test/) \- Lame delegation test from APNIC  
 - [https://dnsviz.net/](https://dnsviz.net/) for checking NS records (and much more)  
 - [https://github.com/google/broken-dns](https://github.com/google/broken-dns) for checking lame delegation at scale
+
+## Related Advice
+
+- [DNS server compromise](dns-server-compromise)
+- [Domain name compromise](domain-name-compromise)
+- [DNS Cache Poisoning](cache-poisoning)

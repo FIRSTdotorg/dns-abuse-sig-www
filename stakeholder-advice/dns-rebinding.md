@@ -32,3 +32,10 @@ SpaceX Starlink Wi-Fi router GEN 2 before 2023.53.0 and Starlink Dish before 07d
 ### Omise.co
 
 [https://hackerone.com/reports/1379656](https://hackerone.com/reports/1379656)
+
+## Related Advice
+
+- [On-path DNS attack](on-path-dns-attack)
+- [Local recursive resolver hijacking](local-resolver-hijacking)
+- [Stub resolver hijacking](stub-resolver-hijacking)
+- [Spoofing of a registered domain](spoofing-of-a-registered-domain)

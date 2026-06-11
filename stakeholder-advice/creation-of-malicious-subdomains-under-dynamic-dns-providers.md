@@ -54,3 +54,9 @@ Phishing campaigns commonly register and use dynamic DNS providers.
   * [https://help.dyn.com/list-of-dyn-dns-pro-remote-access-domain-names/](https://help.dyn.com/list-of-dyn-dns-pro-remote-access-domain-names/)  
   * [https://gist.github.com/jkeychan/cd6172ec00f76d55476cf2e21a094c74](https://gist.github.com/jkeychan/cd6172ec00f76d55476cf2e21a094c74)
 
+## Related Advice
+
+- [Obfuscation via Dynamic DNS](obfuscation-via-dynamic-dns)
+- [Malicious registration of (effective) second level domains](malicious-registration-of-effective-second-level-domains)
+- [Fast flux](fast-flux)
+- [DNS Beacons - C2 Communication](dns-beacons-c2-communication)

@@ -12,7 +12,7 @@ DNS cache poisoning – also known as DNS spoofing – is a type of cyber attack
 
 CAPEC entry: [https://capec.mitre.org/data/definitions/142.html](https://capec.mitre.org/data/definitions/142.html)
 
-Some examples of how this can be achieved by the attacker are through on-path modification of network traffic, sending false updates to improperly secured caching DNS servers, or exploiting vulnerabilities in implementations or protocols.
+Some examples of how this can be achieved by the attacker are through [on-path modification of network traffic](on-path-dns-attack), sending false updates to improperly secured caching DNS servers, or exploiting vulnerabilities in implementations or protocols.
 
 ## Advice
 
@@ -35,7 +35,7 @@ And an internet draft covering this from 2008 can be found here:
 
 [https://datatracker.ietf.org/doc/html/draft-vixie-dnsext-dns0x20-00](https://datatracker.ietf.org/doc/html/draft-vixie-dnsext-dns0x20-00)
 
-For DNS cache poisoning, a compromise of any upstream server would also lead to cache poisoning downstream, if the downstream server were to request the affected records while they are inaccurate. Cache poisoning can take considerable amounts of time until poisoned records are flushed post detection. 
+For DNS cache poisoning, a [compromise of any upstream server](dns-server-compromise) would also lead to cache poisoning downstream, if the downstream server were to request the affected records while they are inaccurate. Cache poisoning can take considerable amounts of time until poisoned records are flushed post detection. 
 
 ## Examples
 
@@ -62,3 +62,9 @@ Route53 BGP attack, attackers pretended to be Route53 authoritative servers
 - DNSSEC validation logs  
 - [https://www.internetsociety.org/deploy360/dnssec/tools/](https://www.internetsociety.org/deploy360/dnssec/tools/)
 
+## Related Advice
+
+- [On-path DNS attack](on-path-dns-attack)
+- [DNS server compromise](dns-server-compromise)
+- [Domain name compromise](domain-name-compromise)
+- [Local recursive resolver hijacking](local-resolver-hijacking)

@@ -21,7 +21,7 @@ Examine regular DNS queries for known patterns of DNS beacons.
 
 Reverse engineer malware to discover beaconing domains.
 
-C2 beaconing frequently combines techniques such as DNS fast-flux, DGA domains, and tunneling. See advice on those techniques for more information.
+C2 beaconing frequently combines techniques such as [DNS fast-flux](fast-flux), [DGA domains](dga), and [DNS tunneling](dns-tunneling). See advice on those techniques for more information.
 
 ## Examples
 
@@ -40,3 +40,10 @@ DNS query logs on authorized resolvers can be used for the purposes detailed abo
 [CISA wrote a really good guide on implementing enterprise DNS](https://www.cisa.gov/sites/default/files/2024-05/Encrypted%20DNS%20Implementation%20Guidance_508c.pdf) in order to detect and block DNS beaconing and C2. 
 
 Netskope has a white paper on [detecting C2 beaconing](https://www.netskope.com/resources/white-papers/effective-c2-beaconing-detection-white-paper).  
+
+## Related Advice
+
+- [DGA domains](dga)
+- [Fast flux](fast-flux)
+- [DNS tunneling](dns-tunneling)
+- [Infiltration and exfiltration via the DNS](infiltration-and-exfiltration-via-the-dns)

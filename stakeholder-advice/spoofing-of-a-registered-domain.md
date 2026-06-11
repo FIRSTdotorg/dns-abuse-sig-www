@@ -10,7 +10,7 @@ title: "DNS Abuse Detection: Spoofing of a registered domain"
 
 In contexts where a domain name is expected, such as in the "From" header of an email or in a URL within a webpage or message body, spoofing involves using a domain name that the attacker does not control, but which is actually owned or registered by a legitimate party.
 
-This type of DNS abuse is related to, but distinct from, an on-path attack where a legitimate domain is being used but impersonated by modifying or spoofing DNS records.
+This type of DNS abuse is related to, but distinct from, an [on-path attack](on-path-dns-attack) where a legitimate domain is being used but impersonated by modifying or spoofing DNS records.
 
 ## Advice
 
@@ -40,3 +40,9 @@ Malicious actors may also update hosts files to make legitimate domains go to ma
 * [RFC 7489](https://datatracker.ietf.org/doc/html/rfc7489)  
 * [Certificate Authority Transparency](https://certificate.transparency.dev/howctworks/)
 
+## Related Advice
+
+- [Use of an Unregistered Domain](use-of-an-unregistered-domain)
+- [Malicious registration of (effective) second level domains](malicious-registration-of-effective-second-level-domains)
+- [Domain name compromise](domain-name-compromise)
+- [On-path DNS attack](on-path-dns-attack)

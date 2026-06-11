@@ -6,49 +6,47 @@
       url: /global/sigs/dns/DNS-Abuse-Techniques-Matrix_v1.3.pdf
     - title: Stakeholder Advice
       url: /global/sigs/dns/stakeholder-advice/
-      nav:    
-        - title: Detection
-          nav:
-            - title: Creation of Malicious Subdomains Under Dynamic DNS Providers
-                url: /global/sigs/dns/stakeholder-advice/detection/creation-of-malicious-subdomains-under-dynamic-dns-providers
-            - title: DNS Cache Poisoning
-                url: /global/sigs/dns/stakeholder-advice/detection/cache-poisoning
-            - title: DGA Domains
-                url: /global/sigs/dns/stakeholder-advice/detection/dga
-            - title: DNS as a Vector for DoS
-                url: /global/sigs/dns/stakeholder-advice/detection/dns-as-a-vector-for-dos
-            - title: DNS Beacons - C2 Communication
-                url: /global/sigs/dns/stakeholder-advice/detection/dns-beacons-c2-communication
-            - title: DNS Rebinding
-                url: /global/sigs/dns/stakeholder-advice/detection/dns-rebinding
-            - title: DNS Server Compromise
-                url: /global/sigs/dns/stakeholder-advice/detection/dns-server-compromise
-            - title: DNS Tunneling
-                url: /global/sigs/dns/stakeholder-advice/detection/dns-tunneling
-            - title: DoS Against the DNS
-                url: /global/sigs/dns/stakeholder-advice/detection/dos-against-the-dns
-            - title: Domain Name Compromise
-                url: /global/sigs/dns/stakeholder-advice/detection/domain-name-compromise
-            - title: Fast Flux
-                url: /global/sigs/dns/stakeholder-advice/detection/fast-flux
-            - title: Infiltration and exfiltration via the DNS
-                url: /global/sigs/dns/stakeholder-advice/detection/infiltration-and-exfiltration-via-the-dns
-            - title: Lame Delegations
-                url: /global/sigs/dns/stakeholder-advice/detection/lame-delegations
-            - title: Local Recursive Resolver Hijacking
-                url: /global/sigs/dns/stakeholder-advice/detection/local-resolver-hijacking
-            - title: Malicious registration of (effective) second level domains
-                url: /global/sigs/dns/stakeholder-advice/detection/malicious-registration-of-effective-second-level-domains
-            - title: Obfuscation via Dynamic DNS
-                url: /global/sigs/dns/stakeholder-advice/detection/obfuscation-via-dynamic-dns
-            - title: On-path DNS Attack
-                url: /global/sigs/dns/stakeholder-advice/detection/on-path-dns-attack
-            - title: Stub Resolver Hijacking
-                url: /global/sigs/dns/stakeholder-advice/detection/stub-resolver-hijacking
-            - title: Spoofing of a Registered Domain
-                url: /global/sigs/dns/stakeholder-advice/detection/spoofing-of-a-registered-domain
-            - title: Use of an Unregistered Domain
-                url: /global/sigs/dns/stakeholder-advice/detection/use-of-an-unregistered-domain
+      nav:
+        - title: Creation of Malicious Subdomains Under Dynamic DNS Providers
+          url: /global/sigs/dns/stakeholder-advice/creation-of-malicious-subdomains-under-dynamic-dns-providers
+        - title: DNS Cache Poisoning
+          url: /global/sigs/dns/stakeholder-advice/cache-poisoning
+        - title: DGA Domains
+          url: /global/sigs/dns/stakeholder-advice/dga
+        - title: DNS as a Vector for DoS
+          url: /global/sigs/dns/stakeholder-advice/dns-as-a-vector-for-dos
+        - title: DNS Beacons - C2 Communication
+          url: /global/sigs/dns/stakeholder-advice/dns-beacons-c2-communication
+        - title: DNS Rebinding
+          url: /global/sigs/dns/stakeholder-advice/dns-rebinding
+        - title: DNS Server Compromise
+          url: /global/sigs/dns/stakeholder-advice/dns-server-compromise
+        - title: DNS Tunneling
+          url: /global/sigs/dns/stakeholder-advice/dns-tunneling
+        - title: DoS Against the DNS
+          url: /global/sigs/dns/stakeholder-advice/dos-against-the-dns
+        - title: Domain Name Compromise
+          url: /global/sigs/dns/stakeholder-advice/domain-name-compromise
+        - title: Fast Flux
+          url: /global/sigs/dns/stakeholder-advice/fast-flux
+        - title: Infiltration and exfiltration via the DNS
+          url: /global/sigs/dns/stakeholder-advice/infiltration-and-exfiltration-via-the-dns
+        - title: Lame Delegations
+          url: /global/sigs/dns/stakeholder-advice/lame-delegations
+        - title: Local Recursive Resolver Hijacking
+          url: /global/sigs/dns/stakeholder-advice/local-resolver-hijacking
+        - title: Malicious registration of (effective) second level domains
+          url: /global/sigs/dns/stakeholder-advice/malicious-registration-of-effective-second-level-domains
+        - title: Obfuscation via Dynamic DNS
+          url: /global/sigs/dns/stakeholder-advice/obfuscation-via-dynamic-dns
+        - title: On-path DNS Attack
+          url: /global/sigs/dns/stakeholder-advice/on-path-dns-attack
+        - title: Stub Resolver Hijacking
+          url: /global/sigs/dns/stakeholder-advice/stub-resolver-hijacking
+        - title: Spoofing of a Registered Domain
+          url: /global/sigs/dns/stakeholder-advice/spoofing-of-a-registered-domain
+        - title: Use of an Unregistered Domain
+          url: /global/sigs/dns/stakeholder-advice/use-of-an-unregistered-domain
     - title: Code of Conduct & Other Policies
       url: /global/sigs/dns/policies
     - title: Examples of DNS Abuse

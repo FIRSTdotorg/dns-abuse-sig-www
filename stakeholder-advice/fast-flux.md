@@ -14,7 +14,7 @@ Note: there are sometimes legitimate reasons for the use of fast flux, for examp
 
 IP reputation can be affected by fast flux. As an example, when a fully qualified domain name (FQDN) using fast flux resolves to IP addresses of well-known service providers, the domain gains a positive reputation score and is less likely to be blocked by DNS firewalls or other filtering techniques.  The malware controllers can then temporarily resolve the FQDN to the IP address they use for their attack.
 
-Fast flux is commonly used with other techniques such as CNAME chaining to create a malware distribution network or as a backup command and control (C2) server to regain control of their malware. Fast flux has some technical characteristics similar to valid DNS uses such as content distribution networks (CDNs) and other types of load balancing. However, there are certain technical features that are almost exclusively used in fast flux as opposed to similar benign use cases.
+Fast flux is commonly used with other techniques such as CNAME chaining to create a malware distribution network or as a backup [command and control (C2) server](dns-beacons-c2-communication) to regain control of their malware. Fast flux has some technical characteristics similar to valid DNS uses such as content distribution networks (CDNs) and other types of load balancing. However, there are certain technical features that are almost exclusively used in fast flux as opposed to similar benign use cases.
 
 For example, fast flux networks use IP addresses on a variety of autonomous systems (AS) and effective second level domains whereas CDNs tend to own all the IP addresses they use, and therefore the IP addresses are in a small number of AS’s. Similarly, CDNs use a relatively small number of effective second level domains. Furthermore, the IP addresses in a CDN or load balancing setup are usually all active and not parked, whereas a fast flux network tends to use a large number of parked IP addresses. A parked domain is one on which no services are actually available on the target of the resource record.
 
@@ -59,3 +59,9 @@ The topic received attention and recommendations from the ICANN security and sta
 * [https://media.blackhat.com/us-13/US-13-Xu-New-Trends-in-FastFlux-Networks-Slides.pdf](https://media.blackhat.com/us-13/US-13-Xu-New-Trends-in-FastFlux-Networks-Slides.pdf)  
   [https://www.researchgate.net/publication/350402517\_Research\_and\_Detection\_of\_Fast-flux\_Botnet](https://www.researchgate.net/publication/350402517_Research_and_Detection_of_Fast-flux_Botnet)
 
+## Related Advice
+
+- [DGA domains](dga)
+- [DNS Beacons - C2 Communication](dns-beacons-c2-communication)
+- [Obfuscation via Dynamic DNS](obfuscation-via-dynamic-dns)
+- [Malicious registration of (effective) second level domains](malicious-registration-of-effective-second-level-domains)

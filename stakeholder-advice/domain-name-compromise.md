@@ -69,3 +69,10 @@ Some examples of detection techniques can be seen in this article by Shoko Nakai
 - For Patterns to detect compromised domains: blogs, security researchers, X, mastodon  
 - [Wayback Machine](https://wayback.archive.org/) for checking website history  
 - Certificate Transparency (CT) logs \- monitoring CT logs can uncover subdomain names added in the parent if the threat actor requests for a TLS certificate.
+
+## Related Advice
+
+- [DNS server compromise](dns-server-compromise)
+- [DNS Cache Poisoning](cache-poisoning)
+- [Spoofing of a registered domain](spoofing-of-a-registered-domain)
+- [Malicious registration of (effective) second level domains](malicious-registration-of-effective-second-level-domains)

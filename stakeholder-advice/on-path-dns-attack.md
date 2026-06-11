@@ -43,3 +43,10 @@ From the Snowden leaks we know that NSA has the capability to perform similar at
 - DNS query logs can show historical responses from DNS servers, for comparison against live responses with DNSSEC-enabled servers  
 - SSL certificate details from browsers can be examined  
 - IP reputation lists can be used to potentially highlight manipulated results, if a query reply includes an IP that has been flagged as malicious unexpectedly
+
+## Related Advice
+
+- [DNS Cache Poisoning](cache-poisoning)
+- [Local recursive resolver hijacking](local-resolver-hijacking)
+- [Stub resolver hijacking](stub-resolver-hijacking)
+- [Spoofing of a registered domain](spoofing-of-a-registered-domain)

@@ -10,7 +10,7 @@ title: "DNS Abuse Detection: Infiltration and exfiltration via the DNS"
 
 Infiltration means getting information into an organization when that is against organization policy. Exfiltration means getting information out of an organization when that is against organization policy. Therefore, detection of exfiltration generally means examining DNS queries whereas detection of infiltration generally means examining DNS response (both errors and response content).
 
-There are a few techniques for embedding other protocols within the DNS. These are generally called “tunneling” and are handled under the “DNS Tunneling” technique. This section describes situations where data is encoded in the DNS protocol without using some other protocol. Tunneling has distinct detection and mitigation opportunities and therefore is handled separately.
+There are a few techniques for embedding other protocols within the DNS. These are generally called “tunneling” and are handled under the [DNS Tunneling](dns-tunneling) technique. This section describes situations where data is encoded in the DNS protocol without using some other protocol. Tunneling has distinct detection and mitigation opportunities and therefore is handled separately.
 
 Infiltration via DNS traffic, without being encoded into another protocol, is used for control (as in malware command and control).
 
@@ -46,3 +46,10 @@ Because infiltration and exfiltration is a malware technique, security teams mig
 
 * [MITRE \- Exfiltration Over Alternative Protocol](https://attack.mitre.org/techniques/T1048/)  
 * [DNSxD: Detecting Data Exfiltration over DNS](https://pureadmin.qub.ac.uk/ws/portalfiles/portal/161785678/1570493592_CameraReady.pdf) \- from Queen’s University Belfast 
+
+## Related Advice
+
+- [DNS tunneling](dns-tunneling)
+- [DNS Beacons - C2 Communication](dns-beacons-c2-communication)
+- [DGA domains](dga)
+- [Fast flux](fast-flux)
