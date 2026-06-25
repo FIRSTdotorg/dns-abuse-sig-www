@@ -60,7 +60,7 @@ We currently have a regularly scheduled weekly meeting every two weeks on Thursd
 
 ## Chair
 
- - Peter Lowe
+ - Peter Lowe, ZeroFox
  - Vinzenz Vogel, SWITCH
 
 ## Founders
