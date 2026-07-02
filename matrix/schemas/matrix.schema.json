@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DNS Abuse Techniques Matrix row",
+  "type": "object",
+  "required": [
+    "action",
+    "technique_id",
+    "stakeholder_id",
+    "capability",
+    "note"
+  ],
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["detect", "mitigate", "prevent"]
+    },
+    "technique_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "stakeholder_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "capability": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
+

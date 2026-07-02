@@ -1,0 +1,4 @@
+action,label,description
+detect,Detection,Identify potential incidents.
+mitigate,Mitigation,Contain an incident and restore secure operations.
+prevent,Prevention,Use DNS-specific steps to make recurrence less likely.

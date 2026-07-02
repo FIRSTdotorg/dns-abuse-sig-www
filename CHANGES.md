@@ -10,6 +10,12 @@ This file should record changes worth mentioning from the SIG and its meetings. 
 # 2026-07-02
 Added README.md
 
+# 2026-07-01
+Made the GitHub repo public.
+
+# 2026-06-25
+Created a matrix processing pipeline for the DNS Abuse Techniques Matrix, including Markdown source content, structured CSV data output, validation, generated tables, and PDF build tooling.
+
 # 2026-06-11
 Updated the stakeholder advice section:
 
