@@ -7,6 +7,9 @@ title: "FIRST DNS Abuse SIG: CHANGES file"
 
 This file should record changes worth mentioning from the SIG and its meetings. No particular rules, just what seems appropriate to record. Entries should be in reverse chronological order.
 
+# 2026-07-02
+Added README.md
+
 # 2026-06-11
 Updated the stakeholder advice section:
 
