@@ -20,11 +20,11 @@ Domain name compromise – The wrongfully taking control of a domain name from t
 
 Lame delegations – Lame delegations occur as a result of expired nameserver domains allowing attackers to take control of the domain resolution by re-registering this expired nameserver domain - https://blog.apnic.net/2021/03/16/the-prevalence-persistence-perils-of-lame-nameservers/.
 
-DNS cache poisoning – also known as DNS spoofing, is a type of cyber attack in which an attacker corrupts a DNS resolver's cache by injecting false DNS records, causing the resolver to records controlled by the attacker - https://capec.mitre.org/data/definitions/142.html
+DNS Cache Poisoning – also known as DNS spoofing, is a type of cyber attack in which an attacker corrupts a DNS resolver's cache by injecting false DNS records, causing the resolver to records controlled by the attacker - https://capec.mitre.org/data/definitions/142.html
 
 DNS rebinding – a type of attack where a malicious website directs a client to a local network address, allowing the attacker to bypass the same-origin policy and gain access to the victim's local resources - https://capec.mitre.org/data/definitions/275.html
 
-DNS server compromise – Attacker gains administrative privileges on an open recursive DNS server, authoritative DNS server, organizational recursive DNS server, or ISP-operated recursive DNS server.
+DNS server compromise – DNS server compromise involves unauthorized control over, or access to, a legitimate DNS server, its configuration, or its records. Administrative privileges are not always required. This can enable adversaries to redirect traffic, manipulate queries, force the server to return malicious IP addresses, and launch other cyberattacks. Affected servers can include open recursive DNS servers, authoritative DNS servers, organizational recursive DNS servers, and ISP-operated recursive DNS servers.
 
 Stub resolver hijacking – The attacker compromises the Operating System of a computer or a phone with malicious code that intercepts and responds to DNS queries with rogue or malicious responses
 
@@ -32,7 +32,7 @@ Local recursive resolver hijacking – Consumer Premise Equipment (CPE), such as
 
 On-path DNS attack – “Attackers intercept communication between a user and a DNS server and provide different destination IP addresses pointing to malicious sites.” (https://www.imperva.com/learn/application-security/dns-hijacking-redirection/)
 
-DoS against the DNS – Multiple systems sending malicious traffic to a target at the same time, or attacks against individual targets that prevent DNS service being provided.
+DoS Against the DNS – Multiple systems sending malicious traffic to a target at the same time, or attacks against individual targets that prevent DNS service being provided.
 
 DNS as a vector for DoS – "Adversaries may attempt to cause a denial of service by reflecting a high-volume of network traffic to a target. This type of Network DoS takes advantage of a third-party server intermediary that hosts and will respond to a given spoofed source IP address. This third-party server is commonly termed a reflector. An adversary accomplishes a reflection attack by sending packets to reflectors with the spoofed address of the victim.” “Two prominent protocols that have enabled Reflection Amplification Floods are DNS and NTP though the use of several others in the wild have been documented." These Reflection and Amplification Floods can be directed against components of the DNS, like authoritative nameservers, rendering them unresponsive. (https://attack.mitre.org/techniques/T1498/002/)
 
@@ -44,7 +44,7 @@ Infiltration and exfiltration via the DNS – Exfiltration via the DNS requires 
 
 Malicious registration of (effective) second level domains – For example, before attacking a victim, adversaries purchase or register domains from an ICANN-accredited registrar that can be used during targeting. See also CAPEC-630.
 
-Creation of malicious subdomains under dynamic DNS providers – Before attacking a victim, adversaries purchase or create domains from an entity other than a registrar or registry that provides subdomains under domains they own and control. See also https://en.wikipedia.org/wiki/Dynamic_DNS.
+Creation of Malicious Subdomains Under Dynamic DNS Providers – Dynamic DNS (DDNS) works by keeping DNS records updated with the correct IP address for a domain. Dynamic DNS providers typically allow users to create subdomains under domains they own. A customer may also use a domain they own with a DDNS provider; however, this technique covers malicious subdomains under provider-owned domains, not customer-owned domains. Before attacking a victim, adversaries create such subdomains through a Dynamic DNS provider, an entity other than a registrar or registry. Providers often offer an API to generate subdomains programmatically, making it easy to create many fully qualified domains for scalable phishing, malware, and other campaigns. These domains can support malicious activity without registering a domain with an entity covered by, for example, the ICANN terms of use. See also https://en.wikipedia.org/wiki/Dynamic_DNS.
 
 Compromise of a non-DNS server to conduct abuse – Internet attack infrastructure is a broad category, and this covers any non-DNS server. Many compromised servers, such as web servers or mail servers, interact with the DNS or may be instrumental in conducting DNS abuse. For example, compromised mail servers are one technique that may be used to send phishing emails.
 
@@ -52,9 +52,9 @@ Use of an unregistered domain – In a context where a domain name is expected (
 
 Spoofing of a registered domain – In a context where a domain name is expected (such as the From header in mail or a URL in a web page or message body), supplying a domain name not controlled by the attacker and that is in fact controlled by or registered to a legitimate registrant.
 
-DNS tunneling - tunneling another protocol over DNS – “The DNS protocol serves an administrative function in computer networking and thus may be very common in environments. DNS traffic may also be allowed even before network authentication is completed. DNS packets contain many fields and headers in which data can be concealed. Often known as DNS tunneling, adversaries may abuse DNS to communicate with systems under their control within a victim network while also mimicking normal expected traffic.” (https://attack.mitre.org/techniques/T1071/004/)
+DNS tunneling – DNS tunneling is the use of DNS network protocols to encapsulate other protocols. The client encodes and sends requests and responses to a server that accepts DNS requests, translates or decodes the DNS traffic, and converts it to the target protocol. DNS tunneling can be used for command and control (C2) communication and as a functional equivalent of a virtual private network. DNS tunneling could also be used for [exfiltration and infiltration](infiltration-and-exfiltration-via-the-dns). Exfiltration and infiltration of information via DNS are addressed separately to account for their different approaches to detection and prevention. DNS traffic may be allowed before network authentication is complete. See also https://attack.mitre.org/techniques/T1071/004/.
 
-DNS beacons - C2 communication – Successive or periodic DNS queries to a command & control server, either to exfiltrate data or await further commands from the C2.
+DNS Beacons - C2 Communication – Some kinds of malware send periodic DNS queries to command and control (C2) servers. These periodic communications are known as beacons. DNS beacons can be used to re-establish control over malware, as a form of keepalive for infected hosts, or a low-bandwidth form of C2 communication.
 
 ### Stakeholders
 

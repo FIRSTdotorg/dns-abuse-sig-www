@@ -8,7 +8,7 @@ title: "DNS Abuse Detection: DNS server compromise"
 
 ## Definition
 
-DNS server compromise involves unauthorized control over, or access to, a legitimate DNS server or its records, enabling adversaries to redirect traffic, manipulate queries, force the server to return malicious IP addresses, and possibly launch several other cyberattacks.
+DNS server compromise involves unauthorized control over, or access to, a legitimate DNS server, its configuration, or its records. Administrative privileges are not always required. This can enable adversaries to redirect traffic, manipulate queries, force the server to return malicious IP addresses, and launch other cyberattacks. Affected servers can include open recursive DNS servers, authoritative DNS servers, organizational recursive DNS servers, and ISP-operated recursive DNS servers.
 
 ## Advice
 
