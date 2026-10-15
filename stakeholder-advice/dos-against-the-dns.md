@@ -1,9 +1,9 @@
 <!--
 ---
-title: "DNS Abuse Detection: DoS Against the DoS"
+title: "DNS Abuse Detection: DoS Against the DNS"
 ...
 -->
-# DNS Abuse Detection: DoS Against the DoS
+# DNS Abuse Detection: DoS Against the DNS
 
 ## Definition
 
