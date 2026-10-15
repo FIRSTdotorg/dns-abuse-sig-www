@@ -8,7 +8,7 @@ title: "DNS Abuse Detection: DNS Tunneling - Tunneling Another Protocol Over DNS
 
 ### Definition
 
-DNS tunneling is the use of DNS network protocols to encapsulate other protocols. The client encodes and sends requests and responses to a server that accepts DNS requests, translates or decodes the DNS traffic, and converts it to the target protocol. DNS tunneling can be used for command and control (C2) communication and as a functional equivalent of a virtual private network. DNS tunneling could also be used for [exfiltration and infiltration](infiltration-and-exfiltration-via-the-dns). Exfiltration and infiltration of information via DNS are addressed separately to account for their different approaches to detection and prevention. DNS traffic may be allowed before network authentication is complete. See also https://attack.mitre.org/techniques/T1071/004/.
+DNS tunneling encapsulates other protocols in DNS traffic. It can support command and control (C2) or act as a virtual private network. DNS tunneling can also carry infiltration or exfiltration, which are addressed separately because their detection and prevention differ. DNS may be allowed before network authentication is complete. See also https://attack.mitre.org/techniques/T1071/004/.
 
 ### Advice
 
