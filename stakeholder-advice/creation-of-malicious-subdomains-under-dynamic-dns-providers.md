@@ -7,13 +7,7 @@ title: "DNS Abuse Detection: Creation of Malicious Subdomains Under Dynamic DNS 
 
 ## Definition
 
-Dynamic DNS (DDNS) works by keeping the DNS updated with the correct IP address for a domain. Dynamic DNS providers typically also provide the ability to create subdomains under existing domains.
-
-Before attacking a victim, adversaries purchase or create domains from an entity other than a registrar or registry a Dynamic DNS provider that provides these subdomains.
-
-Dynamic DNS enables the threat actors to launch phishing, malware etc campaigns without registering for a domain name with an entity covered by, for example, the ICANN terms of use. 
-
-Dynamic DNS providers are one source of domains for threat actors. Like some registrars, dynamic DNS providers often have an API to programmatically generate subdomains to make it easy and efficient to create many domains. Threat actors use this capability to launch campaigns with highly scalable numbers of fully qualified domains.
+Dynamic DNS (DDNS) keeps domain records updated with current IP addresses. Users can create subdomains under provider-owned domains or use domains they own with a provider. This technique covers malicious subdomains under provider-owned domains only. Adversaries can use provider APIs to create many subdomains for scalable phishing, malware, and other campaigns. See also https://en.wikipedia.org/wiki/Dynamic_DNS.
 
 ## Advice
 

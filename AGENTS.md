@@ -10,4 +10,5 @@
 - Keep `matrix/data/matrix.csv` normalized: one row per action, technique, and stakeholder combination.
 - Keep capability values in `matrix/data/matrix.csv` to `yes` or `no`.
 - Prefer small, reviewable edits to source files over regenerated wholesale output.
+- Use concise wording in project prose and PR text. Use normal ASCII hyphens instead of en or em dashes.
 
