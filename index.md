@@ -55,7 +55,7 @@ The Matrix has been incoporated into other work elsewhere:
 
 ## Meetings and Communication
 
-We currently have a regularly scheduled weekly meeting every two weeks on Thursdays at 21:00 JST. Please note that JST doesn't follow daylight savings, so for half the world this will change twice a year. Most regular communication is done through the Slack channel, but we also have a <a href="mailto:dns-abuse-sig@first.org">mailing list</a> for members which is used for more official discussion and in cases where we need to reach the entire SIG.
+We currently have a regularly scheduled weekly meeting every two weeks on Thursdays at 16:00 UTC. Please note that this means that local times are affected by daylight savings, so it's one hour later in the summertime. Most regular communication is done through the Slack channel, but we also have a <a href="mailto:dns-abuse-sig@first.org">mailing list</a> for members which is used for more official discussion and in cases where we need to reach the entire SIG.
 
 
 ## Chair
