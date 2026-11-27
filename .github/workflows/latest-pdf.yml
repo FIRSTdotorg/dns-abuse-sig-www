@@ -4,23 +4,31 @@ on:
   pull_request:
     branches: [main, master]
     paths:
-      - 'matrix/source/**'
+      - 'matrix/content/**'
+      - 'matrix/data/**'
+      - 'matrix/assets/**'
+      - 'matrix/templates/**'
+      - 'matrix/report.json'
       - 'matrix/scripts/**'
-      - 'matrix/requirements-pdf.txt'
       - 'matrix/tests/**'
+      - 'matrix/requirements-pdf.txt'
+      - 'matrix/schemas/**'
       - 'Makefile'
       - '.github/workflows/latest-pdf.yml'
       - 'DNS-Abuse-Techniques-Matrix_v1-latest.pdf'
       - 'DNS-Abuse-Techniques-Matrix_v1.3.pdf'
-      - 'matrix/data/**'
-      - 'matrix/schemas/**'
   push:
     branches: [main, master]
     paths:
-      - 'matrix/source/**'
+      - 'matrix/content/**'
+      - 'matrix/data/**'
+      - 'matrix/assets/**'
+      - 'matrix/templates/**'
+      - 'matrix/report.json'
       - 'matrix/scripts/**'
-      - 'matrix/requirements-pdf.txt'
       - 'matrix/tests/**'
+      - 'matrix/requirements-pdf.txt'
+      - 'matrix/schemas/**'
       - 'Makefile'
       - '.github/workflows/latest-pdf.yml'
   workflow_dispatch:
@@ -79,7 +87,7 @@ jobs:
             cmp build/matrix/DNS-Abuse-Techniques-Matrix.pdf DNS-Abuse-Techniques-Matrix_v1-latest.pdf
           fi
 
-      - name: Test that DOCX edits reach the PDF
+      - name: Test that Markdown and CSV edits reach the PDF
         run: make pdf-test
 
       - name: Upload PDF and review files
@@ -137,7 +145,7 @@ jobs:
           provenance_target="matrix/pdf-build.json"
 
           test -s "$pdf_source"
-          if ! git diff --quiet "$SOURCE_SHA" HEAD -- matrix/source matrix/scripts matrix/tests matrix/requirements-pdf.txt Makefile .github/workflows/latest-pdf.yml; then
+          if ! git diff --quiet "$SOURCE_SHA" HEAD -- matrix/content matrix/data matrix/assets matrix/templates matrix/report.json matrix/scripts matrix/tests matrix/requirements-pdf.txt matrix/schemas Makefile .github/workflows/latest-pdf.yml; then
             echo "PDF inputs advanced; a newer source run must prepare the update."
             exit 0
           fi

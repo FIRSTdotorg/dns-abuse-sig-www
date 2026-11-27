@@ -12,7 +12,7 @@ This repo holds the source content and publishing tooling for the [FIRST](https:
 | [`policies.md`](policies.md) | Code of Conduct and information-sharing policies. |
 | [`dns-abuse-examples.md`](dns-abuse-examples.md) | Real-world examples of DNS abuse techniques. |
 | [`stakeholder-advice/`](stakeholder-advice/) | Per-technique advice documents (one Markdown file per abuse technique) plus an index. |
-| [`matrix/`](matrix/) | Canonical DOCX source, reference data and PDF build pipeline. See [`matrix/README.md`](matrix/README.md). |
+| [`matrix/`](matrix/) | Canonical Markdown and CSV content, assets, DOCX layout template and PDF build pipeline. See [`matrix/README.md`](matrix/README.md). |
 | [`DNS-Abuse-Techniques-Matrix_v1.3.pdf`](DNS-Abuse-Techniques-Matrix_v1.3.pdf) | Current released Matrix snapshot. |
 | [`DNS-Abuse-Techniques-Matrix_v1-latest.pdf`](DNS-Abuse-Techniques-Matrix_v1-latest.pdf) | Rolling working copy. Actions proposes updates through draft PRs. |
 | [`DNS-Abuse-Techniques-Matrix_v1.1.pdf`](DNS-Abuse-Techniques-Matrix_v1.1.pdf) / [`*-ja.pdf`](DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf) | Prior version and Japanese translation of v1.1. |
@@ -31,7 +31,7 @@ It is also used beyond this repo. An HTML version is maintained by JPCERT/CC at 
 
 ### Data model
 
-The PDF's canonical authoring source is `matrix/source/DNS-Abuse-Techniques-Matrix.docx`. Normalized CSV under `matrix/data/` is structured reference data, so diffs surface individual capability changes rather than reflowed wide tables:
+The canonical report content is in Markdown under `matrix/content/`. Normalized CSV under `matrix/data/` holds repeated definitions and matrix data, so diffs surface individual changes rather than reflowed wide tables. The DOCX in `matrix/templates/` provides layout only. `matrix/report.json` owns title, subtitle, language, history heading, history column labels and the website URL used in report and footer links. The five assets in `matrix/assets/` provide yes/no markers, landscape headers, a cover header and a regular portrait header:
 
 - `actions.csv` - the three incident-response actions (detect, mitigate, prevent).
 - `techniques.csv` - abuse techniques and their descriptions.
@@ -39,13 +39,13 @@ The PDF's canonical authoring source is `matrix/source/DNS-Abuse-Techniques-Matr
 - `matrix.csv` - one row per (action, technique, stakeholder) with a `yes`/`no` `capability` and an optional `note`.
 - `version_history.csv` - publication history.
 
-Rows are validated against `matrix/schemas/matrix.schema.json`.
+Markdown references shared definitions with `{{technique:id}}`, `{{stakeholder:id}}` and `{{action:id|displayLabel}}` includes. Rows are validated against `matrix/schemas/matrix.schema.json`. Narrative extras, including Law Enforcement and the hosting aside, remain in Markdown.
 
 ## Building the Matrix PDF
 
-The v1.3 PDF is the design and pagination reference. Future v1 updates must preserve that design, with text changing only where requested. The canonical DOCX is the input to the replacement PDF build.
+The v1.3 PDF is the design reference. The current source revision fits the original 22-page layout and includes later approved definition edits, so its text is not identical to the older export. The build fills a temporary report DOCX from Markdown, CSV and assets, then exports it with LibreOffice. The filled report DOCX is a build output, never canonical source. Legitimate content growth can change the page count; the CI check has no fixed 22-page limit and expects portrait narrative pages, landscape matrix pages and portrait closing pages. PDF proposals still need independent review.
 
-`make pdf` builds from the DOCX with LibreOffice. `make pdf-check` creates side-by-side and difference previews for all 22 pages and checks page layout, text and links. `make pdf-test` checks source sensitivity, deterministic output and source integrity. The generator is checked on Linux CI. Generated PDF proposals still require independent layout review; the initial migrated PDF also requires user approval of remaining renderer differences. The historical Pandoc/Typst target is a draft for reference data, not the PDF authoring path. See [`matrix/README.md`](matrix/README.md) for setup and review requirements.
+`make pdf` builds from Markdown and CSV using the DOCX layout template. `make pdf-check` checks source paragraph, URL and colored capability-symbol coverage in the PDF, then reviews page regions, text bounds and footers. It does not compare the filled DOCX body with template body text. `make pdf-test` checks Markdown and CSV source sensitivity and deterministic output. The generator is checked on Linux CI. Every proposal requires layout review before publication. The historical Pandoc/Typst target creates a separate draft. See [`matrix/README.md`](matrix/README.md) for setup and review requirements.
 
 The workflow builds and checks pull requests without write permissions. A successful default-branch build may open a separate draft PR for the latest PDF and its provenance JSON. It does not push to the default branch or merge. All repository changes, including generated PDFs, require pull requests. Merges happen on GitHub.
 

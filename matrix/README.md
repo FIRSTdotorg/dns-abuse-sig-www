@@ -1,14 +1,16 @@
 # DNS Abuse Techniques Matrix PDF
 
-## Canonical source
+## Canonical sources
 
-The PDF is built from [`source/DNS-Abuse-Techniques-Matrix.docx`](source/DNS-Abuse-Techniques-Matrix.docx). Its baseline SHA-256 is `81250da695c618c5db868b49760dc15c6a14e3ebedae1e97c8de7b243a7bc968`. The Markdown and CSV files in this directory are reference data and import derivations. They are not the PDF authoring source.
+Markdown files in [`content/`](content/) and CSV files in [`data/`](data/) are the canonical report sources. [`report.json`](report.json) supplies title, subtitle, language, history heading, history column labels and the website URL used in report and footer links. The five mapped assets are `capability-yes.png`, `capability-no.png`, `header.png` for landscape pages, `header-large.png` for the cover and `header-portrait.png` for regular portrait pages. [`templates/DNS-Abuse-Techniques-Matrix.docx`](templates/DNS-Abuse-Techniques-Matrix.docx) supplies layout only. There is no canonical `source/` directory.
 
-The original v1.3 PDF is the layout reference. Preserve its 22-page design and pagination, including portrait text pages, landscape matrices, fonts, symbols, colours, links, headers and footers. Change text only when requested. At the start of this migration, the rolling `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` was restored to the v1.3 reference SHA-256: `1a4d37aacf7903e761dd6df89cae957cb02f7ecf2cb582137fccdb1af683ee77`.
+Shared terms and action definitions belong in the CSV files. Markdown uses `{{technique:id}}`, `{{stakeholder:id}}` and `{{action:id|displayLabel}}` includes for repeated definitions. Keep narrative extras such as Law Enforcement and the hosting aside in Markdown. `report.json` and every asset used by the report are build inputs.
+
+The original v1.3 PDF is a design reference. The current source revision fits the original 22-page layout and includes later approved definition edits, so its text is not identical to the older export. Preserve the intended design, including portrait text pages, landscape matrices, fonts, symbols, colours, links, headers and footers. Legitimate content growth can change the page count; CI has no fixed 22-page limit and checks for portrait narrative pages, landscape matrix pages and portrait closing pages. Every PDF proposal still requires independent review.
 
 ## Build and review
 
-Use Python 3, LibreOffice and Poppler. For a local human setup:
+Use Python 3, LibreOffice and Poppler. The Python requirements include the Markdown parser. For a local human setup:
 
 ```sh
 python3 -m venv .venv
@@ -28,28 +30,22 @@ make pdf-check
 make pdf-test
 ```
 
-`make pdf` uses `matrix/scripts/build_docx_pdf.py` to convert the original DOCX to `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`. It makes temporary, render-only OOXML corrections in a work copy for LibreOffice and reuses the DOCX's embedded fonts. It records build provenance alongside the output. The canonical DOCX must remain unchanged.
+`make pdf` uses `matrix/scripts/fill_docx_template.py` to combine the Markdown, CSV and assets into a temporary report DOCX based on the layout template. `matrix/scripts/build_docx_pdf.py` exports that report DOCX with LibreOffice to `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`. The filled DOCX is a build output and never canonical source. The build records provenance alongside the output. The template must remain unchanged.
 
-`make pdf-check` compares the generated PDF with the v1.3 reference. It checks the 22-page count, page dimensions and orientation, body text when the source is unchanged, text bounds and URL targets. It renders all 22 pages to side-by-side and difference previews under `build/matrix/review/`. Review every preview. The comparison is not a pixel-identity test: LibreOffice can produce small font and line-position differences, observed up to about 15 pt. This observation is not an approved visual tolerance. An independent review remains required before publication.
+`make pdf-check` checks the template and PDF selected by `DOCX_TEMPLATE` and `REPORT_PDF` (their defaults are shown in the Makefile). It checks Markdown/CSV-derived expected paragraphs, URLs and colored capability-symbol counts in the PDF. It also checks page regions, page dimensions, text bounds and footer rules, then renders comparison previews under `build/matrix/review/`. It does not compare the filled DOCX body with the template body; the DOCX supplies layout only. Review every preview and obtain an independent review before publication. Comparisons are for review and do not prove pixel identity.
 
-`make pdf-test` verifies that DOCX edits affect the PDF, repeated builds are deterministic, and the canonical DOCX stays unchanged. Run it after source or generator changes.
-
-## Render compatibility
-
-The tracked DOCX is not rewritten. The temporary render copy makes inherited 115% line spacing explicit in body, styles and footers. It preserves the original long-link break on the Authoritative Operators definition, adds 6 pt of first-section bottom clearance, prevents split matrix rows, and uses 3/6/4 pt paragraph clearance in Detection/Mitigation/Prevention cells. A 0.9 pt header-cell inset adjustment preserves the Law Enforcement label wrapping.
-
-The source date text boxes request font weights that are not embedded. The render copy uses the embedded regular Fira Sans for dates and embedded Open Sans for the final TLP label. It removes an obsolete off-page v1.1 shape and black highlighting on empty header spaces. Explicit nil footer borders are removed so older LibreOffice versions retain the real black separator. All corrections retain the visible source text, link targets and artwork. The original final portrait footers both read `20 of 22`; this historical detail is preserved.
+`make pdf-test` verifies that Markdown and CSV edits affect the PDF and repeated builds are deterministic. Run it after source or generator changes. `make import` writes imported material to `build/matrix/imported/` for inspection; it must not overwrite canonical files.
 
 ## Workflow and publication status
 
-The DOCX generator is checked on Linux CI. Successful builds propose PDF updates through draft pull requests. Passing checks are not publication approval. Review every page independently. The initial migrated PDF also requires user layout approval because some spacing, wrapping and header text differ from the Google Docs export; it is not pixel-identical. Do not merge that candidate before approval.
+The Markdown/CSV generator is checked on Linux CI. Successful builds propose PDF updates through draft pull requests. Passing checks are not publication approval. Review every page independently. The current source revision fits the old pagination, but future content can grow the page count while retaining the three page regions.
 
 The GitHub Actions workflow builds and checks pull requests with read-only permissions, then uploads the PDF and review previews. A manual workflow run is limited to the default branch. A successful default-branch run may prepare a separate draft pull request with only the latest PDF and `matrix/pdf-build.json`. The bot branch is immutable and keyed by source commit. The workflow does not push to the default branch or merge its pull request. Repository administrators may need to enable the GitHub Actions setting that allows workflows to create pull requests.
 
 All repository changes, including generated PDF updates, go through pull requests. Merge on GitHub. Do not merge locally or push directly to the default branch. Numbered PDFs are immutable release snapshots; create a new snapshot only when a release is requested. Do not begin a v2 redesign without a separate request.
 
-## Reference data and historical draft
+## Validation and historical draft
 
-The normalized CSV under `data/` records individual capability values. Run `make validate` after changing reference data. Do not hand-edit files under `generated/` or `build/`.
+The normalized CSV under `data/` records individual capability values and full action definitions. Run `make validate` after changing Markdown or CSV sources. Do not hand-edit files under `generated/` or `build/`.
 
-`make draft-pdf` is a historical Pandoc/Typst path for the structured reference data. It is not the PDF authoring source and must not replace the DOCX-based build.
+`make draft-pdf` is a historical Pandoc/Typst path for a separate draft. It is not the canonical PDF build path.
