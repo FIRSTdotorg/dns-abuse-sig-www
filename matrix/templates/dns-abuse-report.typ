@@ -1,7 +1,9 @@
 #set page(
   paper: "us-letter",
   flipped: true,
-  margin: (left: 0.45in, right: 0.45in, top: 0.7in, bottom: 0.55in),
+  // Leave room for the full-width header image and a gap above the body.
+  margin: (left: 0.45in, right: 0.45in, top: 1.35in, bottom: 0.55in),
+  header-ascent: 10%,
   header: image("matrix/assets/header.png", width: 100%),
   footer: context align(center)[
     #text(size: 7pt, fill: rgb("#555555"))[
