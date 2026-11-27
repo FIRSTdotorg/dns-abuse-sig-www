@@ -33,7 +33,7 @@ This validates the data, generates tables and assembles the report before writin
 
 ## Working copy and releases
 
-GitHub Actions rebuilds and commits `DNS-Abuse-Techniques-Matrix-latest.pdf` when PDF inputs change on the default branch. The workflow also supports a manual run. It needs permission to write repository contents, and branch rules must allow the workflow to push. If a run fails, inspect the Actions log and rerun it after resolving the problem.
+GitHub Actions rebuilds and commits `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` when PDF inputs change on the default branch. The workflow also supports a manual run. It needs permission to write repository contents, and branch rules must allow the workflow to push. If a run fails, inspect the Actions log and rerun it after resolving the problem.
 
 The latest PDF is a working copy, not a numbered release. Create a versioned PDF only when a release is requested: update the version history and other release details, build and review the PDF, then copy the reviewed build to a new versioned filename. Update publication links and `CHANGES.md` as appropriate. Do not replace existing versioned snapshots during routine builds.
 

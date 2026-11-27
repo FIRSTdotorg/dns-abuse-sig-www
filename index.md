@@ -28,7 +28,7 @@ The mission of the DNS Abuse SIG is to aid incident responders and security team
 The primary publication of the group is the DNS Abuse Techniques Matrix:
 
  - <a href="DNS-Abuse-Techniques-Matrix_v1.3.pdf">DNS-Abuse-Techniques-Matrix_v1.3.pdf</a> - released version
- - <a href="DNS-Abuse-Techniques-Matrix-latest.pdf">DNS-Abuse-Techniques-Matrix-latest.pdf</a> - latest working copy
+ - <a href="DNS-Abuse-Techniques-Matrix_v1-latest.pdf">DNS-Abuse-Techniques-Matrix_v1-latest.pdf</a> - latest working copy
 
 The advice currently takes the form of a matrix indicating whether a specific stakeholder can directly help with a specific technique. By “help”, we mean whether the stakeholder is in a position to detect, mitigate, or prevent the abuse technique. We have organized this information under three tables covering these incident response actions. For example, during an incident involving DNS cache poisoning, the team can go to the mitigation tab and look at the row for DNS cache poisoning, to find which stakeholders they might be able to contact to help mitigate the incident.
 
@@ -56,7 +56,7 @@ The Matrix has been incoporated into other work elsewhere:
 
 ## Meetings and Communication
 
-We currently have a regularly scheduled weekly meeting every two weeks on Thursdays at 21:00 JST. Please note that JST doesn't follow daylight savings, so for half the world this will change twice a year. Most regular communication is done through the Slack channel, but we also have a <a href="mailto:dns-abuse-sig@first.org">mailing list</a> for members which is used for more official discussion and in cases where we need to reach the entire SIG.
+We currently have a regularly scheduled weekly meeting every two weeks on Thursdays at 16:00 UTC. Please note that this means that local times are affected by daylight savings, so it's one hour later in the summertime. Most regular communication is done through the Slack channel, but we also have a <a href="mailto:dns-abuse-sig@first.org">mailing list</a> for members which is used for more official discussion and in cases where we need to reach the entire SIG.
 
 
 ## Chair

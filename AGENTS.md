@@ -10,5 +10,6 @@
 - Keep `matrix/data/matrix.csv` normalized: one row per action, technique, and stakeholder combination.
 - Keep capability values in `matrix/data/matrix.csv` to `yes` or `no`.
 - Prefer small, reviewable edits to source files over regenerated wholesale output.
-- The `DNS-Abuse-Techniques-Matrix-latest.pdf` file is an automatically updated working copy. GitHub Actions rebuilds it after source changes reach the default branch.
-- Versioned PDFs are release snapshots. Create a new versioned snapshot only when a release is requested. Do not replace existing snapshots.
+- Use concise wording in project prose and PR text. Use normal ASCII hyphens instead of en or em dashes.
+- The `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` file is an automatically updated working copy. GitHub Actions rebuilds it after source changes reach the default branch.
+- Numbered PDFs are release snapshots. Create a new snapshot only when a release is requested. Do not replace existing snapshots.

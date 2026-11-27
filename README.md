@@ -14,7 +14,7 @@ This repo holds the source content and publishing tooling for the [FIRST](https:
 | [`stakeholder-advice/`](stakeholder-advice/) | Per-technique advice documents (one Markdown file per abuse technique) plus an index. |
 | [`matrix/`](matrix/) | Source of truth and build pipeline for the DNS Abuse Techniques Matrix PDF. See [`matrix/README.md`](matrix/README.md). |
 | [`DNS-Abuse-Techniques-Matrix_v1.3.pdf`](DNS-Abuse-Techniques-Matrix_v1.3.pdf) | Current released Matrix snapshot. |
-| [`DNS-Abuse-Techniques-Matrix-latest.pdf`](DNS-Abuse-Techniques-Matrix-latest.pdf) | Automatically rebuilt working copy. |
+| [`DNS-Abuse-Techniques-Matrix_v1-latest.pdf`](DNS-Abuse-Techniques-Matrix_v1-latest.pdf) | Automatically rebuilt working copy. |
 | [`DNS-Abuse-Techniques-Matrix_v1.1.pdf`](DNS-Abuse-Techniques-Matrix_v1.1.pdf) / [`*-ja.pdf`](DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf) | Prior version and Japanese translation of v1.1. |
 | [`Makefile`](Makefile) | Build targets for the Matrix pipeline. |
 | [`AGENTS.md`](AGENTS.md) | Instructions for automated/agentic edits to the Matrix pipeline. |
@@ -45,7 +45,7 @@ Rows are validated against `matrix/schemas/matrix.schema.json`.
 
 Run `make pdf` from the repository root to validate the data and build `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`. You need Python 3, Pandoc and Typst. See [`matrix/README.md`](matrix/README.md) for installation and release details.
 
-GitHub Actions rebuilds the rolling `DNS-Abuse-Techniques-Matrix-latest.pdf` after PDF source changes reach the default branch. Versioned PDFs are snapshots created only for a release.
+GitHub Actions rebuilds the rolling `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` after PDF source changes reach the default branch. Versioned PDFs are snapshots created only for a release.
 
 ### Editing rules
 

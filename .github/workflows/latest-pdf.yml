@@ -51,8 +51,8 @@ jobs:
             git checkout -B pdf-publish FETCH_HEAD
             export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct -- Makefile matrix/content matrix/data matrix/assets matrix/templates matrix/report.json matrix/schemas matrix/scripts .github/workflows/latest-pdf.yml)"
             make pdf
-            cp build/matrix/DNS-Abuse-Techniques-Matrix.pdf DNS-Abuse-Techniques-Matrix-latest.pdf
-            git add -- DNS-Abuse-Techniques-Matrix-latest.pdf
+            cp build/matrix/DNS-Abuse-Techniques-Matrix.pdf DNS-Abuse-Techniques-Matrix_v1-latest.pdf
+            git add -- DNS-Abuse-Techniques-Matrix_v1-latest.pdf
             if git diff --cached --quiet; then
               exit 0
             fi
