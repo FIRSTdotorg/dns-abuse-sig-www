@@ -46,6 +46,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Install document tools
         run: |
@@ -68,6 +69,15 @@ jobs:
           test -s build/matrix/DNS-Abuse-Techniques-Matrix.pdf
           test -d build/matrix/review
           find build/matrix/review -type f -print -quit | grep -q .
+
+      - name: Check a proposed generated PDF matches its source
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if ! git diff --quiet "$BASE_SHA" HEAD -- DNS-Abuse-Techniques-Matrix_v1-latest.pdf; then
+            cmp build/matrix/DNS-Abuse-Techniques-Matrix.pdf DNS-Abuse-Techniques-Matrix_v1-latest.pdf
+          fi
 
       - name: Test that DOCX edits reach the PDF
         run: make pdf-test

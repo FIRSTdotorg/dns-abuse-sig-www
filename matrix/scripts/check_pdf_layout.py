@@ -23,6 +23,29 @@ def body_chars(page):
                    if not character.isspace())
 
 
+def compare_markers(old, new):
+    """Compare all original red/green capability images in their page positions."""
+    expected = [m for m in old.images if m['srcsize'] == (12, 12)]
+    remaining = [m for m in new.images if m['srcsize'] == (12, 12)]
+    mismatches = 0
+    max_dx = max_dy = 0
+    for marker in expected:
+        if not remaining:
+            mismatches += 1
+            continue
+        candidate = min(remaining, key=lambda m: abs(m['x0']-marker['x0']) + abs(m['top']-marker['top']))
+        remaining.remove(candidate)
+        dx, dy = abs(candidate['x0']-marker['x0']), abs(candidate['top']-marker['top'])
+        max_dx, max_dy = max(max_dx, dx), max(max_dy, dy)
+        def red(image):
+            data = image['stream'].get_data()
+            return sum(data[::3]) > sum(data[1::3])
+        if red(marker) != red(candidate) or dx > 8 or dy > 20:
+            mismatches += 1
+    return {'count': len(expected), 'mismatches': mismatches + len(remaining),
+            'max_horizontal_shift_pt': round(max_dx, 3), 'max_vertical_shift_pt': round(max_dy, 3)}
+
+
 def check(actual: Path, source: Path, reference: Path, output: Path) -> None:
     output.mkdir(parents=True, exist_ok=True)
     if hashlib.sha256(reference.read_bytes()).hexdigest() != REFERENCE_SHA:
@@ -41,6 +64,9 @@ def check(actual: Path, source: Path, reference: Path, output: Path) -> None:
         for number, (old, new) in enumerate(zip(original.pages, built.pages), 1):
             item = {'page': number, 'size': [new.width, new.height],
                     'baseline_body_matches': body_chars(old) == body_chars(new)}
+            item['capability_symbols'] = compare_markers(old, new)
+            if baseline and item['capability_symbols']['mismatches']:
+                failures.append(f'Page {number}: capability symbols differ from v1.3')
             if abs(old.width-new.width) > 1 or abs(old.height-new.height) > 1:
                 failures.append(f'Page {number}: page size/orientation differs from v1.3')
             if baseline and not item['baseline_body_matches']:
