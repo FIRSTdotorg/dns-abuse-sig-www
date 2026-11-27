@@ -102,6 +102,10 @@ def prepare(source: Path, destination: Path) -> None:
 
 
 def render(source: Path, destination: Path, soffice: str) -> None:
+    if source == destination or source == destination.with_suffix('.build.json'):
+        raise ValueError('The output must not overwrite the source DOCX')
+    if destination == ROOT / 'DNS-Abuse-Techniques-Matrix_v1.3.pdf':
+        raise ValueError('The v1.3 reference is immutable')
     destination.parent.mkdir(parents=True, exist_ok=True)
     before = hashlib.sha256(source.read_bytes()).hexdigest()
     with tempfile.TemporaryDirectory(prefix='matrix-docx-') as temporary:
@@ -142,8 +146,17 @@ def render(source: Path, destination: Path, soffice: str) -> None:
         digest = hashlib.sha256(source.read_bytes() + Path(__file__).read_bytes() + version.encode()).digest()[:16]
         writer._ID = ArrayObject([ByteStringObject(digest), ByteStringObject(digest)])
         writer.compress_identical_objects(remove_duplicates=False, remove_unreferenced=True)
-        with destination.open('wb') as stream:
-            writer.write(stream)
+        with tempfile.NamedTemporaryFile(dir=destination.parent, suffix='.pdf', delete=False) as stream:
+            pending = Path(stream.name)
+            try:
+                writer.write(stream)
+            except BaseException:
+                pending.unlink(missing_ok=True)
+                raise
+        if hashlib.sha256(source.read_bytes()).hexdigest() != before:
+            pending.unlink(missing_ok=True)
+            raise RuntimeError('Source DOCX changed during build')
+        os.replace(pending, destination)
         destination.with_suffix('.build.json').write_text(json.dumps({
             'source': str(source.relative_to(ROOT)) if source.is_relative_to(ROOT) else source.name,
             'source_sha256': before, 'renderer': version,

@@ -5,6 +5,7 @@ MATRIX_DIR := matrix
 BUILD_DIR := build/matrix
 REPORT_MD := $(BUILD_DIR)/report.md
 REPORT_PDF := $(BUILD_DIR)/DNS-Abuse-Techniques-Matrix.pdf
+DRAFT_REPORT_PDF := $(BUILD_DIR)/DNS-Abuse-Techniques-Matrix-draft.pdf
 
 .PHONY: import validate tables assemble pdf pdf-check pdf-test draft-pdf check-tools clean
 
@@ -32,7 +33,7 @@ pdf-test:
 
 # Historical alternative, kept only for work on the structured reference data.
 draft-pdf: assemble check-tools
-	$(PANDOC) $(REPORT_MD) --from markdown+raw_attribute --to typst --template $(MATRIX_DIR)/templates/dns-abuse-report.typ --pdf-engine=typst -o $(REPORT_PDF)
+	$(PANDOC) $(REPORT_MD) --from markdown+raw_attribute --to typst --template $(MATRIX_DIR)/templates/dns-abuse-report.typ --pdf-engine=typst -o $(DRAFT_REPORT_PDF)
 
 check-tools:
 	command -v $(PANDOC)

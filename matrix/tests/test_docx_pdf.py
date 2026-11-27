@@ -19,6 +19,8 @@ spec.loader.exec_module(builder)
 class DocxPdfIntegration(unittest.TestCase):
     def test_source_edit_and_repeatability(self):
         source = ROOT/'matrix/source/DNS-Abuse-Techniques-Matrix.docx'
+        with self.assertRaises(ValueError):
+            builder.render(source, source, 'not-needed-for-rejected-output')
         original_hash = hashlib.sha256(source.read_bytes()).hexdigest()
         soffice = os.environ.get('SOFFICE') or shutil.which('soffice')
         self.assertTrue(soffice, 'LibreOffice is required for integration tests')
@@ -38,13 +40,14 @@ class DocxPdfIntegration(unittest.TestCase):
                     if info.filename == 'word/document.xml':
                         xml = ET.fromstring(data)
                         text = next(xml.iter(builder.W+'t'))
-                        self.assertEqual(text.text, 'DNS Abuse Techniques Matrix')
-                        text.text = 'DNS Abuse Techniques Report'
+                        original_title = text.text
+                        text.text = ('Q' if original_title[0] != 'Q' else 'Y') + original_title[1:]
+                        changed_title = text.text.strip()
                         data = ET.tostring(xml, encoding='UTF-8', xml_declaration=True, standalone=True)
                     output.writestr(info, data)
             builder.render(changed, edited, soffice)
             self.assertNotEqual(first.read_bytes(), edited.read_bytes())
-            self.assertIn('DNS Abuse Techniques Report', PdfReader(edited).pages[0].extract_text())
+            self.assertIn(changed_title, PdfReader(edited).pages[0].extract_text())
             self.assertEqual(len(PdfReader(edited).pages), 22)
         self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), original_hash)
 

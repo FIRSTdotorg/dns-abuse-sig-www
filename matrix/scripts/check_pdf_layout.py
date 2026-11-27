@@ -17,7 +17,7 @@ REFERENCE_SHA = '1a4d37aacf7903e761dd6df89cae957cb02f7ecf2cb582137fccdb1af683ee7
 
 
 def body_chars(page):
-    top, bottom = (90, 775) if page.height > page.width else (65, 530)
+    top, bottom = (85, 783) if page.height > page.width else (65, 530)
     return Counter(character for char in page.chars if top <= char['top'] < bottom
                    for character in unicodedata.normalize('NFKC', char['text'])
                    if not character.isspace())

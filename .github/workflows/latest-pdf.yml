@@ -11,6 +11,9 @@ on:
       - 'Makefile'
       - '.github/workflows/latest-pdf.yml'
       - 'DNS-Abuse-Techniques-Matrix_v1-latest.pdf'
+      - 'DNS-Abuse-Techniques-Matrix_v1.3.pdf'
+      - 'matrix/data/**'
+      - 'matrix/schemas/**'
   push:
     branches: [main, master]
     paths:
@@ -59,6 +62,7 @@ jobs:
 
       - name: Build and check PDF
         run: |
+          make validate
           make pdf
           make pdf-check
           test -s build/matrix/DNS-Abuse-Techniques-Matrix.pdf
@@ -123,8 +127,8 @@ jobs:
           provenance_target="matrix/pdf-build.json"
 
           test -s "$pdf_source"
-          if [[ "$(git rev-parse HEAD)" != "$SOURCE_SHA" ]]; then
-            echo "Default branch advanced; a newer source run must prepare the update."
+          if ! git diff --quiet "$SOURCE_SHA" HEAD -- matrix/source matrix/scripts matrix/tests matrix/requirements-pdf.txt Makefile .github/workflows/latest-pdf.yml; then
+            echo "PDF inputs advanced; a newer source run must prepare the update."
             exit 0
           fi
           if cmp -s "$pdf_source" "$pdf_target"; then
@@ -141,8 +145,12 @@ jobs:
           if git ls-remote --exit-code origin "refs/heads/$branch" >/dev/null 2>&1; then
             git fetch origin "$branch"
             git switch --create "$branch" --track "origin/$branch"
+            cmp "$pdf_source" "$pdf_target"
+            cmp downloaded/DNS-Abuse-Techniques-Matrix.build.json "$provenance_target"
+            unexpected="$(git diff --name-only "$SOURCE_SHA" HEAD -- . ':!DNS-Abuse-Techniques-Matrix_v1-latest.pdf' ':!matrix/pdf-build.json')"
+            test -z "$unexpected"
           else
-            git switch --create "$branch" "origin/$DEFAULT_BRANCH"
+            git switch --create "$branch" "$SOURCE_SHA"
             cp "$pdf_source" "$pdf_target"
             cp downloaded/DNS-Abuse-Techniques-Matrix.build.json "$provenance_target"
             git add -- "$pdf_target" "$provenance_target"
