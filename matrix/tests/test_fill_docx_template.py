@@ -331,6 +331,12 @@ class FillTemplateTests(unittest.TestCase):
                 key_paragraph=next(p for p in document.iter(W+'p') if 'detect / mitigate / prevent the threat' in text(p))
                 self.assertEqual(len(list(key_paragraph.iter(W+'drawing'))),2)
 
+    def test_closing_footer_uses_a_live_page_field(self):
+        with ZipFile(self.fill()) as archive:
+            footer=ET.fromstring(archive.read('word/footer4.xml'))
+        self.assertTrue(any((node.text or '').strip()=='PAGE' for node in footer.iter(W+'instrText')))
+        self.assertFalse(any(re.search(r'\d+ of',node.text or '') for node in footer.iter(W+'t')))
+
     def test_unknown_csv_field_is_rejected_instead_of_ignored(self):
         path=self.matrix/'data/actions.csv'
         rows=read_rows(path)

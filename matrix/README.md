@@ -49,3 +49,5 @@ All repository changes, including generated PDF updates, go through pull request
 The normalized CSV under `data/` records individual capability values and full action definitions. Run `make validate` after changing Markdown or CSV sources. Do not hand-edit files under `generated/` or `build/`.
 
 `make draft-pdf` is a historical Pandoc/Typst path for a separate draft. It is not the canonical PDF build path.
+
+The render copy replaces the template's frozen closing-page number with a live PAGE field. PDF checks verify every page number and total, so content growth does not retain the original footer numbering error. The template and v1.3 release PDF stay unchanged.

@@ -159,6 +159,11 @@ def check(actual: Path, template: Path, reference: Path, output: Path, matrix: P
                          and line['x1']-line['x0'] > new.width*.7 and abs(line['y1']-line['y0']) < 1]
                 item['footer_rule_present']=bool(rules)
                 if not rules: failures.append(f'Page {number}: footer separator missing')
+                footer=new.crop((0,new.height-75,new.width,new.height)).extract_text() or ''
+                counter=re.search(r'(?<!\d)(\d+)\s*of\s*(\d+)(?!\d)',footer)
+                item['footer_page_number']=[int(counter[1]),int(counter[2])] if counter else None
+                if item['footer_page_number'] != [number,len(built.pages)]:
+                    failures.append(f'Page {number}: incorrect footer page number')
                 if not body_chars(new): failures.append(f'Page {number}: no body content')
                 if any(c['text'].strip() and (c['x0'] < -1 or c['x1'] > new.width+1 or c['top'] < -1 or c['bottom'] > new.height+1) for c in new.chars):
                     failures.append(f'Page {number}: text outside the page bounds')

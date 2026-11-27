@@ -422,6 +422,8 @@ def fill(template, destination, matrix):
                 if value == baseline:
                     parts[member]=(matrix/'assets'/name).read_bytes()
                     break
+    page_field=next(deepcopy(run) for run in parse_xml(parts['word/footer3.xml']).iter(W+'r')
+                    if any((node.text or '').strip()=='PAGE' for node in run.iter(W+'instrText')))
     for member,value in list(parts.items()):
         if re.match(r'word/(header|footer)\d+\.xml$',member):
             tree=parse_xml(value)
@@ -445,6 +447,20 @@ def fill(template, destination, matrix):
                         for relation in relationships:
                             if relation.get('Id') == link.get(R+'id'): relation.set('Target',metadata['website'])
                         parts[relname]=E.tostring(relationships,xml_declaration=True,encoding='UTF-8',standalone=True)
+            if member=='word/footer4.xml':
+                # Page numbers are generated layout fields, never fixed template text.
+                for run in list(tree.iter(W+'r')):
+                    text=''.join(t.text or '' for t in run.findall(W+'t'))
+                    match=re.fullmatch(r'(\s*)\d+( of\s*)',text)
+                    if match:
+                        parent=run.getparent();position=parent.index(run)
+                        for value in (match[1],None,match[2]):
+                            piece=deepcopy(page_field if value is None else run)
+                            if value is not None:
+                                nodes=piece.findall(W+'t');nodes[0].text=value
+                                for node in nodes[1:]: node.text=''
+                            parent.insert(position,piece);position+=1
+                        parent.remove(run)
             if 'footer' in member:
                 for node in tree.iter(W+'t'):
                     if node.text: node.text=re.sub(r'https?://[^\s]+',lambda _:metadata['website'],node.text)
