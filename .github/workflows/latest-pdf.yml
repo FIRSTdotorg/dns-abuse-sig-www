@@ -1,27 +1,171 @@
-name: Validate matrix sources
+name: Matrix PDF
 
-# Publication is paused until an editable build reproduces the v1.3 layout.
-# Future publication must open a pull request, never push to the default branch.
 on:
   pull_request:
+    branches: [main, master]
     paths:
-      - 'matrix/**'
+      - 'matrix/source/**'
+      - 'matrix/scripts/**'
+      - 'matrix/requirements-pdf.txt'
+      - 'matrix/tests/**'
       - 'Makefile'
       - '.github/workflows/latest-pdf.yml'
       - 'DNS-Abuse-Techniques-Matrix_v1-latest.pdf'
-      - 'DNS-Abuse-Techniques-Matrix_v1.3.pdf'
+  push:
+    branches: [main, master]
+    paths:
+      - 'matrix/source/**'
+      - 'matrix/scripts/**'
+      - 'matrix/requirements-pdf.txt'
+      - 'matrix/tests/**'
+      - 'Makefile'
+      - '.github/workflows/latest-pdf.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: matrix-pdf-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  validate:
+  build:
+    # workflow_dispatch is limited to the repository's default branch.
+    if: >-
+      github.event_name != 'workflow_dispatch' ||
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - run: make validate
-      - name: Check the restored v1.3 baseline
-        run: cmp DNS-Abuse-Techniques-Matrix_v1.3.pdf DNS-Abuse-Techniques-Matrix_v1-latest.pdf
+
+      - name: Install document tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            libreoffice-writer fonts-liberation fontconfig poppler-utils
+
+      - name: Install PDF requirements
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install --upgrade pip
+          .venv/bin/python -m pip install -r matrix/requirements-pdf.txt
+          echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
+
+      - name: Build and check PDF
+        run: |
+          make pdf
+          make pdf-check
+          test -s build/matrix/DNS-Abuse-Techniques-Matrix.pdf
+          test -d build/matrix/review
+          find build/matrix/review -type f -print -quit | grep -q .
+
+      - name: Test that DOCX edits reach the PDF
+        run: make pdf-test
+
+      - name: Upload PDF and review files
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: matrix-pdf-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build/matrix/DNS-Abuse-Techniques-Matrix.pdf
+            build/matrix/DNS-Abuse-Techniques-Matrix.build.json
+            build/matrix/review/**
+          if-no-files-found: error
+          retention-days: 30
+
+  publish-pr:
+    needs: build
+    if: >-
+      needs.build.result == 'success' &&
+      ((github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)) ||
+       (github.event_name == 'workflow_dispatch' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)))
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      # This job runs only for trusted default-branch pushes or manual runs on
+      # the default branch. It does not check out or execute source scripts.
+      - name: Check out default branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Download this run's build artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: matrix-pdf-${{ github.run_id }}-${{ github.run_attempt }}
+          path: downloaded
+
+      - name: Open artifact update pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          branch="automation/matrix-pdf-${SOURCE_SHA}"
+          artifact_name="matrix-pdf-${RUN_ID}-${RUN_ATTEMPT}"
+          run_url="https://github.com/${REPOSITORY}/actions/runs/${RUN_ID}"
+          pdf_source="downloaded/DNS-Abuse-Techniques-Matrix.pdf"
+          pdf_target="DNS-Abuse-Techniques-Matrix_v1-latest.pdf"
+          provenance_target="matrix/pdf-build.json"
+
+          test -s "$pdf_source"
+          if [[ "$(git rev-parse HEAD)" != "$SOURCE_SHA" ]]; then
+            echo "Default branch advanced; a newer source run must prepare the update."
+            exit 0
+          fi
+          if cmp -s "$pdf_source" "$pdf_target"; then
+            echo "Latest PDF is already current."
+            exit 0
+          fi
+
+          existing_pr="$(gh pr list --state all --head "$branch" --json url --jq '.[0].url // empty')"
+          if [[ -n "$existing_pr" ]]; then
+            echo "Reusing existing pull request: $existing_pr"
+            exit 0
+          fi
+
+          if git ls-remote --exit-code origin "refs/heads/$branch" >/dev/null 2>&1; then
+            git fetch origin "$branch"
+            git switch --create "$branch" --track "origin/$branch"
+          else
+            git switch --create "$branch" "origin/$DEFAULT_BRANCH"
+            cp "$pdf_source" "$pdf_target"
+            cp downloaded/DNS-Abuse-Techniques-Matrix.build.json "$provenance_target"
+            git add -- "$pdf_target" "$provenance_target"
+            if git diff --cached --quiet; then
+              echo "PDF and provenance are unchanged; no pull request is needed."
+              exit 0
+            fi
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Update generated DNS Abuse Matrix PDF"
+            git push origin "$branch"
+          fi
+
+          cat > "$RUNNER_TEMP/pr-body.md" <<EOF
+          Automated PDF update built from source commit ${SOURCE_SHA}.
+
+          Workflow artifact run: ${run_url}
+          Artifact name: ${artifact_name}
+
+          The PR stages only the latest PDF and its provenance JSON. This workflow does not merge the PR.
+          EOF
+          gh pr create \
+            --base "$DEFAULT_BRANCH" \
+            --head "$branch" \
+            --title "Update generated DNS Abuse Matrix PDF" \
+            --body-file "$RUNNER_TEMP/pr-body.md"

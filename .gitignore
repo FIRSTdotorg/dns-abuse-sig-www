@@ -2,3 +2,5 @@
 build/
 matrix/generated/
 
+__pycache__/
+.venv/
