@@ -4,7 +4,7 @@
 
 The PDF is built from [`source/DNS-Abuse-Techniques-Matrix.docx`](source/DNS-Abuse-Techniques-Matrix.docx). Its baseline SHA-256 is `81250da695c618c5db868b49760dc15c6a14e3ebedae1e97c8de7b243a7bc968`. The Markdown and CSV files in this directory are reference data and import derivations. They are not the PDF authoring source.
 
-The original v1.3 PDF is the layout reference. Preserve its 22-page design and pagination, including portrait text pages, landscape matrices, fonts, symbols, colours, links, headers and footers. Change text only when requested. The rolling `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` and the v1.3 reference PDF currently have the same SHA-256: `1a4d37aacf7903e761dd6df89cae957cb02f7ecf2cb582137fccdb1af683ee77`.
+The original v1.3 PDF is the layout reference. Preserve its 22-page design and pagination, including portrait text pages, landscape matrices, fonts, symbols, colours, links, headers and footers. Change text only when requested. At the start of this migration, the rolling `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` was restored to the v1.3 reference SHA-256: `1a4d37aacf7903e761dd6df89cae957cb02f7ecf2cb582137fccdb1af683ee77`.
 
 ## Build and review
 
@@ -42,7 +42,7 @@ The source date text boxes request font weights that are not embedded. The rende
 
 ## Workflow and publication status
 
-The DOCX-based generator is under verification. Do not treat generated output or a bot pull request as approved for publication until Linux CI quality checks pass and the maintainer confirms that publication can be enabled.
+The DOCX generator is checked on Linux CI. Successful builds propose PDF updates through draft pull requests. Passing checks are not publication approval. Review every page independently. The initial migrated PDF also requires user layout approval because some spacing, wrapping and header text differ from the Google Docs export; it is not pixel-identical. Do not merge that candidate before approval.
 
 The GitHub Actions workflow builds and checks pull requests with read-only permissions, then uploads the PDF and review previews. A manual workflow run is limited to the default branch. A successful default-branch run may prepare a separate draft pull request with only the latest PDF and `matrix/pdf-build.json`. The bot branch is immutable and keyed by source commit. The workflow does not push to the default branch or merge its pull request. Repository administrators may need to enable the GitHub Actions setting that allows workflows to create pull requests.
 
