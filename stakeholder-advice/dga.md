@@ -59,13 +59,9 @@ This technique was used in a spear phishing campaign that was reported by the IR
 ## Further Reading
 
 - “Dynamic Resolution: Domain Generation Algorithms” [https://attack.mitre.org/techniques/T1568/002/](https://attack.mitre.org/techniques/T1568/002/)
-
 - “DGA posts by baderj” [https://bin.re/tag/dga/](https://bin.re/tag/dga/)
-
 - “The Ecosystem of Detection and Blocklisting of Domain Generation” [https://dl.acm.org/doi/fullHtml/10.1145/3423951](https://dl.acm.org/doi/fullHtml/10.1145/3423951)
-
 - “A Comprehensive Measurement Study of Domain Generating Malware” [https://www.usenix.org/system/files/conference/usenixsecurity16/sec16\_paper\_plohmann.pdf](https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_plohmann.pdf)
-
 - “Domain Generation Algorithms (DGAs) of Malware reimplemented in Python”.[https://github.com/baderj/domain\_generation\_algorithms](https://github.com/baderj/domain_generation_algorithms)
 
 ## See Also
