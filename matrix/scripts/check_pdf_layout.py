@@ -71,6 +71,14 @@ def check(actual: Path, source: Path, reference: Path, output: Path) -> None:
                 failures.append(f'Page {number}: page size/orientation differs from v1.3')
             if baseline and not item['baseline_body_matches']:
                 failures.append(f'Page {number}: baseline body content differs from v1.3')
+            # The DOCX has a black top rule above every footer.
+            rules = [line for line in new.lines
+                     if line['top'] > new.height - 80 and line['top'] < new.height - 35
+                     and line['x1'] - line['x0'] > new.width * .7
+                     and abs(line['y1'] - line['y0']) < 1]
+            item['footer_rule_present'] = bool(rules)
+            if not rules:
+                failures.append(f'Page {number}: footer separator missing')
             if not new.extract_text():
                 failures.append(f'Page {number}: blank or non-extractable text')
             for char in new.chars:

@@ -29,9 +29,10 @@ def prepare(source: Path, destination: Path) -> None:
         for info in original.infolist():
             data = original.read(info.filename)
             if info.filename in ('word/document.xml', 'word/styles.xml',
-                                 'word/header2.xml', 'word/header3.xml', 'word/header4.xml', 'word/footer4.xml'):
+                                 'word/header2.xml', 'word/header3.xml', 'word/header4.xml',
+                                 'word/footer1.xml', 'word/footer2.xml', 'word/footer3.xml', 'word/footer4.xml'):
                 tree = ET.fromstring(data, ET.XMLParser(resolve_entities=False, no_network=True))
-                if info.filename in ('word/document.xml', 'word/styles.xml'):
+                if info.filename in ('word/document.xml', 'word/styles.xml') or info.filename.startswith('word/footer'):
                     # Google applies the inherited 115% value; LO otherwise uses 100%.
                     for spacing in tree.iter(W + 'spacing'):
                         if spacing.get(W + 'lineRule') == 'auto' and spacing.get(W + 'line') is None:
@@ -72,6 +73,15 @@ def prepare(source: Path, destination: Path) -> None:
                     if numbering is not None:
                         sections[2].remove(numbering)
                 else:
+                    if 'footer' in info.filename:
+                        # Older LO combines explicit nil edges with the neighbouring
+                        # paragraph and can suppress the real top separator.
+                        for borders in list(tree.iter(W + 'pBdr')):
+                            for edge in list(borders):
+                                if edge.get(W + 'val') == 'nil':
+                                    borders.remove(edge)
+                            if not len(borders):
+                                borders.getparent().remove(borders)
                     if 'header' in info.filename:
                         for run in tree.iter(W + 'r'):
                             text_nodes = list(run.iter(W + 't'))
