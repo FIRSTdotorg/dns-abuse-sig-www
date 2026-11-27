@@ -13,7 +13,8 @@ This repo holds the source content and publishing tooling for the [FIRST](https:
 | [`dns-abuse-examples.md`](dns-abuse-examples.md) | Real-world examples of DNS abuse techniques. |
 | [`stakeholder-advice/`](stakeholder-advice/) | Per-technique advice documents (one Markdown file per abuse technique) plus an index. |
 | [`matrix/`](matrix/) | Source of truth and build pipeline for the DNS Abuse Techniques Matrix PDF. See [`matrix/README.md`](matrix/README.md). |
-| [`DNS-Abuse-Techniques-Matrix_v1.3.pdf`](DNS-Abuse-Techniques-Matrix_v1.3.pdf) | Current published Matrix. |
+| [`DNS-Abuse-Techniques-Matrix_v1.3.pdf`](DNS-Abuse-Techniques-Matrix_v1.3.pdf) | Current released Matrix snapshot. |
+| [`DNS-Abuse-Techniques-Matrix_v1-latest.pdf`](DNS-Abuse-Techniques-Matrix_v1-latest.pdf) | Automatically rebuilt working copy. |
 | [`DNS-Abuse-Techniques-Matrix_v1.1.pdf`](DNS-Abuse-Techniques-Matrix_v1.1.pdf) / [`*-ja.pdf`](DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf) | Prior version and Japanese translation of v1.1. |
 | [`Makefile`](Makefile) | Build targets for the Matrix pipeline. |
 | [`AGENTS.md`](AGENTS.md) | Instructions for automated/agentic edits to the Matrix pipeline. |
@@ -42,20 +43,9 @@ Rows are validated against `matrix/schemas/matrix.schema.json`.
 
 ## Building the Matrix PDF
 
-Prerequisites for a full build are `python3`, `pandoc`, and `typst`.
+Run `make pdf` from the repository root to validate the data and build `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`. You need Python 3, Pandoc and Typst. See [`matrix/README.md`](matrix/README.md) for installation and release details.
 
-Python dependencies for the DOCX import step include `python-docx`.
-
-Targets (run from the repo root):
-
-```bash
-make import DOCX_SOURCE="../DNS Abuse Techniques Matrix.docx"  # re-extract Markdown/CSV/assets from the Google Docs DOCX export
-make validate                                                  # check the normalized data model
-make tables                                                    # regenerate Markdown tables from the CSVs (implies validate)
-make assemble                                                  # write build/matrix/report.md (implies tables)
-make pdf                                                       # render build/matrix/DNS-Abuse-Techniques-Matrix.pdf (needs pandoc + typst)
-make clean                                                     # remove build/ and matrix/generated/
-```
+GitHub Actions rebuilds the rolling `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` after PDF source changes reach the default branch. Versioned PDFs are snapshots created only for a release.
 
 ### Editing rules
 

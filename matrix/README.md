@@ -13,30 +13,29 @@ This directory is the new source of truth for the PDF publication.
 - `assets/` contains logos and small symbols extracted from the source DOCX.
 - `templates/dns-abuse-report.typ` controls PDF page layout, headers, footers, fonts, and table defaults.
 
-## Commands
+## Build the PDF
 
-From the repository root:
+Install Python 3, Pandoc and Typst. On macOS with Homebrew:
 
 ```bash
-make import DOCX_SOURCE="../DNS Abuse Techniques Matrix.docx"
-make validate
-make assemble
+brew install python pandoc typst
+```
+
+From the repository root, run:
+
+```bash
 make pdf
 ```
 
-`make import` re-extracts Markdown, CSV, and assets from the Google Docs DOCX export.
+This validates the data, generates tables and assembles the report before writing `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`. Check the PDF for missing sections, tables and layout problems. `make validate`, `make tables` and `make assemble` can also be run separately. The PDF template uses Arial when available, and Liberation Sans as a fallback. Install one of these fonts for a consistent layout.
 
-`make validate` checks the normalized data model.
+`make import DOCX_SOURCE="../DNS Abuse Techniques Matrix.docx"` is only for a deliberate re-import from a Google Docs DOCX export. It requires `python-docx` and overwrites source content and data. Do not run it for a normal rebuild.
 
-`make assemble` writes `build/matrix/report.md`, the generated Pandoc input.
+## Working copy and releases
 
-`make pdf` requires `pandoc` and `typst` on PATH and writes `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`.
+GitHub Actions rebuilds and commits `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` when PDF inputs change on the default branch. The workflow also supports a manual run. It needs permission to write repository contents, and branch rules must allow the workflow to push. If a run fails, inspect the Actions log and rerun it after resolving the problem.
 
-On macOS, the expected local toolchain is:
-
-```bash
-brew install pandoc typst
-```
+The latest PDF is a working copy, not a numbered release. Create a versioned PDF only when a release is requested: update the version history and other release details, build and review the PDF, then copy the reviewed build to a new versioned filename. Update publication links and `CHANGES.md` as appropriate. Do not replace existing versioned snapshots during routine builds.
 
 ## Editing Rules
 

@@ -10,7 +10,7 @@
   ],
 )
 
-#set text(font: "Arial", size: 8pt, lang: "en")
+#set text(font: ("Arial", "Liberation Sans"), size: 8pt, lang: "en")
 #set par(justify: true, leading: 0.55em)
 #set heading(numbering: none)
 #set table(

@@ -1,0 +1,66 @@
+name: Build latest matrix PDF
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'matrix/content/**'
+      - 'matrix/data/**'
+      - 'matrix/assets/**'
+      - 'matrix/templates/**'
+      - 'matrix/report.json'
+      - 'matrix/schemas/**'
+      - 'matrix/scripts/**'
+      - 'Makefile'
+      - '.github/workflows/latest-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: latest-matrix-pdf
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: master
+          fetch-depth: 0
+      - name: Install fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-liberation
+      - uses: pandoc/actions/setup@86321b6dd4675f5014c611e05088e10d4939e09e # v1
+        with:
+          version: '3.14'
+      - uses: typst-community/setup-typst@00ad6338f0b34724ea002136bfb701a6c18585b0 # v5
+        with:
+          typst-version: '0.15.1'
+      - name: Build and publish the latest PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin master
+            git checkout -B pdf-publish FETCH_HEAD
+            export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct -- Makefile matrix/content matrix/data matrix/assets matrix/templates matrix/report.json matrix/schemas matrix/scripts .github/workflows/latest-pdf.yml)"
+            make pdf
+            cp build/matrix/DNS-Abuse-Techniques-Matrix.pdf DNS-Abuse-Techniques-Matrix_v1-latest.pdf
+            git add -- DNS-Abuse-Techniques-Matrix_v1-latest.pdf
+            if git diff --cached --quiet; then
+              exit 0
+            fi
+            git commit -m 'Update latest matrix PDF'
+            if git push origin HEAD:master; then
+              exit 0
+            fi
+            echo "Push failed on attempt $attempt; rebuilding from the current branch tip."
+          done
+          echo 'Could not publish the PDF after five attempts.' >&2
+          exit 1
