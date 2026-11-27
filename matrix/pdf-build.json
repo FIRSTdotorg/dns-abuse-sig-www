@@ -1,0 +1,27 @@
+{
+  "template": "matrix/templates/DNS-Abuse-Techniques-Matrix.docx",
+  "template_sha256": "81250da695c618c5db868b49760dc15c6a14e3ebedae1e97c8de7b243a7bc968",
+  "sources": {
+    "assets/capability-no.png": "0a5c0d39564c1956e87511f237dc04ce6889c6369567c13b28ffad30508f0e9e",
+    "assets/capability-yes.png": "a04410de2f56065e08ebf4cbd48b6c041c0ace88ed3655291eb3c50b78a550c9",
+    "assets/header-large.png": "3ae54f1e2b1c4d2f8f271a5f86ba1a0dadce72ce7507370712d99a9d16410e04",
+    "assets/header-portrait.png": "69e7cf60bd5a4fc7af74cfdac5f321ec24bcf36132cc807373ede61e939cf54c",
+    "assets/header.png": "5cabb99bac09ba1fd909c82cc481e69d7b4647562e7cc8cf70b18b9f154925ca",
+    "content/01-introduction.md": "ebc295327363adc88189a6d089ba2970049f5aa7a70c1b01b2257df447e71425",
+    "content/02-terms.md": "468b86fde29ecd8b9b1e9f40ba67eb7c3e07cc4065c8ed32395b85ddfbbf7ef1",
+    "content/03-examples-of-techniques.md": "2836fb90347af10ce59b64988f6712c503d63292120a8f4a35ba14826bd431bd",
+    "content/04-advice-for-incident-responders.md": "504cc4ecb2f3d62d33db5483f81d8c56e942476fc45baf7bbaa86122c71270d3",
+    "content/05-abuse-matrices.md": "4d6af0c74ed17fe70aa12a4541cd68e20d17f5943ff676da42f28c8c3088f5b5",
+    "content/06-acknowledgements.md": "84781cc7d19b5e452c2c2c7510cff442d93eaf8f70eb18a20b5ae59e2f80c70d",
+    "data/actions.csv": "13dd9892a7b506d2dffc532fd59465322bcd6f2927a35226ebd0b28ba8496130",
+    "data/matrix.csv": "6791dd18aae8606c2fe70f8900673da483c243a3d1b6fc60dba39eb454422635",
+    "data/stakeholders.csv": "20690603f978d08401e76bdcea35ffac30d8b77c33a0b89b6c6ee66464fea70b",
+    "data/techniques.csv": "89f10e7826eef32ad3d9646c0ab5c5ae9cebeda01342232739a9dfdddfc95b6d",
+    "data/version_history.csv": "ae0db2b80e3678c72f669f6144c5f1bb12e0299f0ec99587d84e31a97c077e95",
+    "report.json": "7d2b14ae3852736429e1e66d33914660f6499f18254b787d30f83ab9dfbb1d96"
+  },
+  "content_sha256": "d1f83c09f88bee9b1ab78d53f4f7011d84f644e7f2c5bc1fc82d989b2db5a5e4",
+  "renderer": "LibreOffice 24.2.7.2 420(Build:2)",
+  "generator_sha256": "2c2ec35a055bce9058aebadaa45963eb627072608e96270bcc07dcbcdc934235",
+  "pdf_sha256": "825e356066133d2717e804e4256b2de729dba354025b98e7b861b4dfb95e2996"
+}
