@@ -1,47 +1,23 @@
-# DNS Abuse Techniques Matrix Publishing Pipeline
+# DNS Abuse Techniques Matrix PDF
 
-This directory is the new source of truth for the PDF publication.
+## Required layout
 
-## Source Files
+The original `DNS-Abuse-Techniques-Matrix_v1.3.pdf` is the layout reference for the v1 series. It has 22 pages, with portrait text pages and landscape matrices. Preserve its design and pagination. Change text only where requested. Preserve fonts, full-width matrices, capability symbols, colours, links, headers and footers.
 
-- `content/` contains the narrative Markdown.
-- `data/actions.csv` defines the three incident-response actions.
-- `data/techniques.csv` defines abuse techniques and their descriptions.
-- `data/stakeholders.csv` defines stakeholder columns.
-- `data/matrix.csv` contains one normalized row per action, technique, and stakeholder.
-- `data/version_history.csv` contains the publication history table.
-- `assets/` contains logos and small symbols extracted from the source DOCX.
-- `templates/dns-abuse-report.typ` controls PDF page layout, headers, footers, fonts, and table defaults.
+The latest PDF is restored to that exact original as a baseline. Its SHA-256 is `1a4d37aacf7903e761dd6df89cae957cb02f7ecf2cb582137fccdb1af683ee77`.
 
-## Build the PDF
+## Editable build status
 
-Install Python 3, Pandoc and Typst. On macOS with Homebrew:
+The current Pandoc/Typst build does not match v1.3 and must not publish the working copy. Automatic PDF publication is paused while a faithful editable build is prepared. Copying the original PDF restores the baseline, but does not complete the editable rebuild.
 
-```bash
-brew install python pandoc typst
-```
+The Markdown, CSV, assets, metadata and template remain in the repository. `make validate` checks matrix data. `make pdf` still runs the existing draft build and writes `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`; this is experimental output and must not replace the reviewed latest PDF.
 
-From the repository root, run:
+The original DOCX is also available locally. The authoring format for the replacement build must preserve the v1.3 design. Do not discard source content or assume that a new renderer matches the original.
 
-```bash
-make pdf
-```
+## Review and publication
 
-This validates the data, generates tables and assembles the report before writing `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`. Check the PDF for missing sections, tables and layout problems. `make validate`, `make tables` and `make assemble` can also be run separately. The PDF template uses Arial when available, and Liberation Sans as a fallback. Install one of these fonts for a consistent layout.
+Render every page and compare it with the original before publication. Check requested content changes, pagination, text extraction and link targets. Obtain an independent review. Do not publish a substitute design or begin a v2 redesign without a separate request.
 
-`make import DOCX_SOURCE="../DNS Abuse Techniques Matrix.docx"` is only for a deliberate re-import from a Google Docs DOCX export. It requires `python-docx` and overwrites source content and data. Do not run it for a normal rebuild.
+All repository changes, including generated PDF updates, require a GitHub pull request. Merge on GitHub. Do not merge locally or push directly to the default branch. When automated PDF publication resumes, it must open or update a pull request and must not push to the default branch or merge its own changes.
 
-## Working copy and releases
-
-GitHub Actions rebuilds and commits `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` when PDF inputs change on the default branch. The workflow also supports a manual run. It needs permission to write repository contents, and branch rules must allow the workflow to push. If a run fails, inspect the Actions log and rerun it after resolving the problem.
-
-The latest PDF is a working copy, not a numbered release. Create a versioned PDF only when a release is requested: update the version history and other release details, build and review the PDF, then copy the reviewed build to a new versioned filename. Update publication links and `CHANGES.md` as appropriate. Do not replace existing versioned snapshots during routine builds.
-
-## Editing Rules
-
-Edit source files in `content/`, `data/`, `assets/`, and `templates/`.
-
-Do not edit `generated/` or `build/` files directly.
-
-The matrix data is intentionally normalized so diffs show individual capability changes instead of reflowed wide tables.
-
+Numbered PDFs remain immutable snapshots. Create a new numbered file only when a release is requested.
