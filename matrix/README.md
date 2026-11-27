@@ -18,7 +18,7 @@ brew install --cask libreoffice
 brew install poppler
 ```
 
-Automated contributors should use the Python/runtime bundled in their environment instead of installing local dependencies.
+Automated contributors with a bundled document runtime should use it. GitHub Actions installs the dependencies into an isolated environment on its runner.
 
 From the repository root, run:
 
@@ -34,11 +34,17 @@ make pdf-test
 
 `make pdf-test` verifies that DOCX edits affect the PDF, repeated builds are deterministic, and the canonical DOCX stays unchanged. Run it after source or generator changes.
 
+## Render compatibility
+
+The tracked DOCX is not rewritten. The temporary render copy makes inherited 115% line spacing explicit in body, styles and footers. It preserves the original long-link break on the Authoritative Operators definition, adds 6 pt of first-section bottom clearance, prevents split matrix rows, and uses 3/6/4 pt paragraph clearance in Detection/Mitigation/Prevention cells. A 0.9 pt header-cell inset adjustment preserves the Law Enforcement label wrapping.
+
+The source date text boxes request font weights that are not embedded. The render copy uses the embedded regular Fira Sans for dates and embedded Open Sans for the final TLP label. It removes an obsolete off-page v1.1 shape and black highlighting on empty header spaces. Explicit nil footer borders are removed so older LibreOffice versions retain the real black separator. All corrections retain the visible source text, link targets and artwork. The original final portrait footers both read `20 of 22`; this historical detail is preserved.
+
 ## Workflow and publication status
 
 The DOCX-based generator is under verification. Do not treat generated output or a bot pull request as approved for publication until Linux CI quality checks pass and the maintainer confirms that publication can be enabled.
 
-The GitHub Actions workflow builds and checks pull requests with read-only permissions, then uploads the PDF and review previews. A manual workflow run is limited to the default branch. A successful default-branch run may prepare a separate pull request with only the latest PDF and `matrix/pdf-build.json`. The bot branch is immutable and keyed by source commit. The workflow does not push to the default branch or merge its pull request. Repository administrators may need to enable the GitHub Actions setting that allows workflows to create pull requests.
+The GitHub Actions workflow builds and checks pull requests with read-only permissions, then uploads the PDF and review previews. A manual workflow run is limited to the default branch. A successful default-branch run may prepare a separate draft pull request with only the latest PDF and `matrix/pdf-build.json`. The bot branch is immutable and keyed by source commit. The workflow does not push to the default branch or merge its pull request. Repository administrators may need to enable the GitHub Actions setting that allows workflows to create pull requests.
 
 All repository changes, including generated PDF updates, go through pull requests. Merge on GitHub. Do not merge locally or push directly to the default branch. Numbered PDFs are immutable release snapshots; create a new snapshot only when a release is requested. Do not begin a v2 redesign without a separate request.
 

@@ -47,7 +47,7 @@ The v1.3 PDF is the design and pagination reference. Future v1 updates must pres
 
 `make pdf` builds from the DOCX with LibreOffice. `make pdf-check` creates side-by-side and difference previews for all 22 pages and checks page layout, text and links. `make pdf-test` checks source sensitivity, deterministic output and source integrity. The generator remains under verification until Linux CI checks pass and the maintainer confirms publication can be enabled. The historical Pandoc/Typst target is a draft for reference data, not the PDF authoring path. See [`matrix/README.md`](matrix/README.md) for setup and review requirements.
 
-The workflow builds and checks pull requests without write permissions. A successful default-branch build may open a separate PR for the latest PDF and its provenance JSON. It does not push to the default branch or merge. All repository changes, including generated PDFs, require pull requests. Merges happen on GitHub.
+The workflow builds and checks pull requests without write permissions. A successful default-branch build may open a separate draft PR for the latest PDF and its provenance JSON. It does not push to the default branch or merge. All repository changes, including generated PDFs, require pull requests. Merges happen on GitHub.
 
 ## Contributing
 

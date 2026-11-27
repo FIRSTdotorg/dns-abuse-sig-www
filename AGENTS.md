@@ -18,10 +18,10 @@ These instructions apply to all contributors and tools.
 - Review every preview and obtain an independent review before publication. The comparison is not a pixel-identity test. LibreOffice can produce small font and line-position differences, observed up to about 15 pt. This is not an approved visual tolerance and does not remove the independent-review gate.
 - Run `make pdf-test` to check that source edits affect the output, builds are deterministic and the canonical DOCX remains unchanged.
 - The generator is under verification. Do not treat a generated PDF or bot pull request as approved for publication until Linux CI quality checks pass and the maintainer confirms that publication can be enabled.
-- The workflow builds and checks pull requests without write permissions, then uploads the PDF and review previews. A successful default-branch build may prepare a separate pull request containing the latest PDF and `matrix/pdf-build.json`. It must not push to the default branch or merge automatically. Bot branches are immutable and keyed by the source commit.
+- The workflow builds and checks pull requests without write permissions, then uploads the PDF and review previews. A successful default-branch build may prepare a separate draft pull request containing the latest PDF and `matrix/pdf-build.json`. It must not push to the default branch or merge automatically. Bot branches are immutable and keyed by the source commit.
 - The repository setting to allow GitHub Actions to create pull requests may need to be enabled by an administrator. Do not bypass this setting or push generated files directly.
 - `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` is the rolling working copy. Numbered PDFs are immutable release snapshots; create a new snapshot only when a release is requested. Do not begin a v2 redesign without a separate request.
-- For a local human setup, use Python 3 with a virtual environment and `matrix/requirements-pdf.txt`, then install LibreOffice and Poppler. Automated contributors should use the Python/runtime bundled in their environment rather than install local dependencies.
+- For a local human setup, use Python 3 with a virtual environment and `matrix/requirements-pdf.txt`, then install LibreOffice and Poppler. Automated contributors with a bundled document runtime should use it. GitHub Actions uses an isolated dependency environment on its runner.
 - The historical `make draft-pdf` target uses Pandoc and Typst for the structured reference data. It is not the PDF authoring path.
 
 ## Reference data

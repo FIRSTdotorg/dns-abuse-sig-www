@@ -129,7 +129,7 @@ jobs:
           REPOSITORY: ${{ github.repository }}
         run: |
           set -euo pipefail
-          branch="automation/matrix-pdf-${SOURCE_SHA}"
+          branch="codex/matrix-pdf-${SOURCE_SHA}"
           artifact_name="matrix-pdf-${RUN_ID}-${RUN_ATTEMPT}"
           run_url="https://github.com/${REPOSITORY}/actions/runs/${RUN_ID}"
           pdf_source="downloaded/DNS-Abuse-Techniques-Matrix.pdf"
@@ -182,7 +182,7 @@ jobs:
 
           The PR stages only the latest PDF and its provenance JSON. This workflow does not merge the PR.
           EOF
-          gh pr create \
+          gh pr create --draft \
             --base "$DEFAULT_BRANCH" \
             --head "$branch" \
             --title "Update generated DNS Abuse Matrix PDF" \
