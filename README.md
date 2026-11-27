@@ -12,9 +12,9 @@ This repo holds the source content and publishing tooling for the [FIRST](https:
 | [`policies.md`](policies.md) | Code of Conduct and information-sharing policies. |
 | [`dns-abuse-examples.md`](dns-abuse-examples.md) | Real-world examples of DNS abuse techniques. |
 | [`stakeholder-advice/`](stakeholder-advice/) | Per-technique advice documents (one Markdown file per abuse technique) plus an index. |
-| [`matrix/`](matrix/) | Source of truth and build pipeline for the DNS Abuse Techniques Matrix PDF. See [`matrix/README.md`](matrix/README.md). |
+| [`matrix/`](matrix/) | Matrix content, reference data and experimental build pipeline. See [`matrix/README.md`](matrix/README.md). |
 | [`DNS-Abuse-Techniques-Matrix_v1.3.pdf`](DNS-Abuse-Techniques-Matrix_v1.3.pdf) | Current released Matrix snapshot. |
-| [`DNS-Abuse-Techniques-Matrix_v1-latest.pdf`](DNS-Abuse-Techniques-Matrix_v1-latest.pdf) | Automatically rebuilt working copy. |
+| [`DNS-Abuse-Techniques-Matrix_v1-latest.pdf`](DNS-Abuse-Techniques-Matrix_v1-latest.pdf) | Working copy restored to the v1.3 baseline; editable rebuild pending. |
 | [`DNS-Abuse-Techniques-Matrix_v1.1.pdf`](DNS-Abuse-Techniques-Matrix_v1.1.pdf) / [`*-ja.pdf`](DNS-Abuse-Techniques-Matrix_v1.1-ja.pdf) | Prior version and Japanese translation of v1.1. |
 | [`Makefile`](Makefile) | Build targets for the Matrix pipeline. |
 | [`AGENTS.md`](AGENTS.md) | Instructions for automated/agentic edits to the Matrix pipeline. |
@@ -43,19 +43,11 @@ Rows are validated against `matrix/schemas/matrix.schema.json`.
 
 ## Building the Matrix PDF
 
-Run `make pdf` from the repository root to validate the data and build `build/matrix/DNS-Abuse-Techniques-Matrix.pdf`. You need Python 3, Pandoc and Typst. See [`matrix/README.md`](matrix/README.md) for installation and release details.
+The latest PDF is restored to the original v1.3 baseline. Future v1 updates must preserve that design and pagination, with text changing only where requested.
 
-GitHub Actions rebuilds the rolling `DNS-Abuse-Techniques-Matrix_v1-latest.pdf` after PDF source changes reach the default branch. Versioned PDFs are snapshots created only for a release.
+The current Pandoc/Typst build does not reproduce v1.3. Automatic PDF publication is paused until a faithful editable build is ready. `make pdf` still produces an experimental draft. See [`matrix/README.md`](matrix/README.md) for the build status and review requirements.
 
-### Editing rules
-
-- Treat `matrix/content/`, `matrix/data/`, `matrix/assets/`, and `matrix/templates/` as the source of truth.
-- Do **not** hand-edit files under `matrix/generated/` or `build/`, or the generated PDFs - change the source and rebuild.
-- Keep `matrix/data/matrix.csv` normalized (one row per action/technique/stakeholder) with capability values restricted to `yes` or `no`.
-- Run `make validate` after changing Matrix data, and `make assemble` after changing prose, data, assets, or templates.
-- Prefer small, reviewable edits to source files over regenerated wholesale output.
-
-See `AGENTS.md` and `matrix/README.md` for the full pipeline details.
+All repository changes, including generated PDFs, require pull requests. Merges happen on GitHub.
 
 ## Contributing
 
