@@ -9,10 +9,15 @@ from pathlib import Path
 import subprocess
 import unicodedata
 import pdfplumber
+from zipfile import ZipFile
+from lxml import etree as E
+from pypdf import PdfReader
+import re
+from io import BytesIO
+from fill_docx_template import FILES, expand, blocks, inline, plain, read_csv, inputs
 from PIL import Image, ImageChops, ImageStat, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[2]
-ORIGINAL_DOCX_SHA = '81250da695c618c5db868b49760dc15c6a14e3ebedae1e97c8de7b243a7bc968'
 REFERENCE_SHA = '1a4d37aacf7903e761dd6df89cae957cb02f7ecf2cb582137fccdb1af683ee77'
 
 
@@ -46,46 +51,123 @@ def compare_markers(old, new):
             'max_horizontal_shift_pt': round(max_dx, 3), 'max_vertical_shift_pt': round(max_dy, 3)}
 
 
-def check(actual: Path, source: Path, reference: Path, output: Path) -> None:
+def normalize(text):
+    return ''.join(unicodedata.normalize('NFKC', text).split())
+
+
+def authored_expectations(matrix):
+    """Read content independently of the filled Word document or its mapping."""
+    data={}
+    for kind,filename,identifier in [('action','actions.csv','action'),('technique','techniques.csv','technique_id'),('stakeholder','stakeholders.csv','stakeholder_id')]:
+        data[kind]={r[identifier]:r for r in read_csv(matrix/'data'/filename)}
+    expected,urls=[],set()
+    legends=0;seen=set()
+    def add(value):
+        expected.append(plain(value))
+        urls.update(href for _,_,_,href in inline(value) if href)
+    for name,_ in FILES:
+        for block in blocks(expand((matrix/'content'/name).read_text(),data,seen)):
+            if block['kind']=='matrix': continue
+            if name=='05-abuse-matrices.md' and block['text'].startswith('Yes:'):
+                legend=re.fullmatch(r'Yes:\s*(.*?)\s+No:\s*(.*)',block['text'],re.S)
+                if not legend: raise ValueError('Invalid source legend')
+                legends+=1
+                for value in legend.groups(): add(value.removesuffix('\\'))
+            else: add(block['text'])
+    matrix_rows=read_csv(matrix/'data/matrix.csv')
+    for row in matrix_rows:
+        if row['note']: add(row['note'])
+    for kind,rows in data.items():
+        for row in rows.values(): add(row['label'])
+    for row in read_csv(matrix/'data/version_history.csv'):
+        for value in row.values(): add(value)
+    metadata=json.loads((matrix/'report.json').read_text())
+    for field in ('title','subtitle','website','history_heading'): add(metadata[field])
+    for label in metadata['history_columns']: add(label)
+    counts=Counter({False:legends,True:legends})
+    for row in matrix_rows:
+        if not (row['capability']=='no' and row['note'].startswith('N/A')):
+            counts[row['capability']=='no']+=1
+    return expected,urls,counts
+
+
+def source_coverage(actual, matrix):
+    """Check canonical source text, links and yes/no values against actual PDF layers."""
+    expected,urls,expected_colors=authored_expectations(matrix)
+    metadata=json.loads((matrix/'report.json').read_text())
+    versions=read_csv(matrix/'data/version_history.csv')
+    reader=PdfReader(actual)
+    text=''.join(p.extract_text() or '' for p in reader.pages)
+    full=normalize(text);flow=full
+    # Permit a source paragraph to continue past page furniture.
+    furniture=[metadata['title'],metadata['website'],'TLP:CLEAR',
+               f"Version {versions[-1]['version']} ({versions[-1]['date']})"]
+    for fragment in sorted(furniture,key=len,reverse=True): flow=flow.replace(normalize(fragment),'')
+    flow=re.sub(r'\d+of\d+', '', flow)
+    missing=[v for v in expected if v.strip() and normalize(v) not in full and normalize(v) not in flow]
+    with pdfplumber.open(actual) as pdf:
+        links={link['uri'] for page in pdf.pages for link in page.hyperlinks if link.get('uri')}
+        symbols=[image for page in pdf.pages for image in page.images if 3 <= image['width'] <= 12 and 3 <= image['height'] <= 12]
+        actual_colors=Counter(sum(m['stream'].get_data()[::3]) > sum(m['stream'].get_data()[1::3]) for m in symbols)
+    failures=[]
+    if missing: failures.append('Authored source text missing from PDF: '+repr(missing[:4]))
+    if urls-links: failures.append('Authored link targets missing from PDF: '+repr(sorted(urls-links)))
+    if actual_colors != expected_colors: failures.append(f'Source capability symbols differ: expected {dict(expected_colors)}, found {dict(actual_colors)}')
+    return failures, {'source_paragraphs':len(expected),'source_links':len(urls),'source_symbols':sum(expected_colors.values()),'source_text_missing':len(missing)}
+
+
+def check(actual: Path, template: Path, reference: Path, output: Path, matrix: Path = ROOT/"matrix") -> None:
     output.mkdir(parents=True, exist_ok=True)
     if hashlib.sha256(reference.read_bytes()).hexdigest() != REFERENCE_SHA:
         raise ValueError('The immutable v1.3 reference PDF has changed')
-    baseline = hashlib.sha256(source.read_bytes()).hexdigest() == ORIGINAL_DOCX_SHA
-    failures = []
-    report = {'baseline_source': baseline, 'pages': [], 'failures': failures,
-              'note': 'Image differences require independent visual review. A passed check does not approve publication.'}
+    manifest=json.loads(actual.with_suffix('.build.json').read_text())
+    if inputs(matrix) != manifest['sources'] or hashlib.sha256(template.read_bytes()).hexdigest() != manifest['template_sha256']:
+        raise ValueError('Sources or template changed after the build; rerun make pdf')
+    scripts=Path(__file__).parent
+    current_generator=hashlib.sha256((scripts/'build_docx_pdf.py').read_bytes()+(scripts/'fill_docx_template.py').read_bytes()).hexdigest()
+    if current_generator != manifest['generator_sha256']:
+        raise ValueError('Generator changed after the build; rerun make pdf')
+    if hashlib.sha256(actual.read_bytes()).hexdigest() != manifest['pdf_sha256']:
+        raise ValueError('PDF differs from its build record')
+    failures,coverage=source_coverage(actual,matrix)
+    report = {'source_coverage':coverage, 'pages': [], 'failures': failures,
+              'note': 'Content edits may repaginate. Every comparison requires independent review.'}
     with pdfplumber.open(reference) as original, pdfplumber.open(actual) as built:
-        if len(built.pages) != 22:
-            failures.append(f'Expected 22 pages, found {len(built.pages)}')
-        expected_links = {link['uri'] for page in original.pages for link in page.hyperlinks if link.get('uri')}
-        actual_links = {link['uri'] for page in built.pages for link in page.hyperlinks if link.get('uri')}
-        if baseline and expected_links != actual_links:
-            failures.append('Baseline hyperlink targets differ from v1.3')
-        for number, (old, new) in enumerate(zip(original.pages, built.pages), 1):
-            item = {'page': number, 'size': [new.width, new.height],
-                    'baseline_body_matches': body_chars(old) == body_chars(new)}
-            item['capability_symbols'] = compare_markers(old, new)
-            if baseline and item['capability_symbols']['mismatches']:
-                failures.append(f'Page {number}: capability symbols differ from v1.3')
-            if abs(old.width-new.width) > 1 or abs(old.height-new.height) > 1:
-                failures.append(f'Page {number}: page size/orientation differs from v1.3')
-            if baseline and not item['baseline_body_matches']:
-                failures.append(f'Page {number}: baseline body content differs from v1.3')
-            # The DOCX has a black top rule above every footer.
-            rules = [line for line in new.lines
-                     if line['top'] > new.height - 80 and line['top'] < new.height - 35
-                     and line['x1'] - line['x0'] > new.width * .7
-                     and abs(line['y1'] - line['y0']) < 1]
-            item['footer_rule_present'] = bool(rules)
-            if not rules:
-                failures.append(f'Page {number}: footer separator missing')
-            if not new.extract_text():
-                failures.append(f'Page {number}: blank or non-extractable text')
-            for char in new.chars:
-                if char['text'].strip() and (char['x0'] < -1 or char['x1'] > new.width+1 or char['top'] < -1 or char['bottom'] > new.height+1):
+        report['reference_pages']=len(original.pages);report['generated_pages']=len(built.pages)
+        groups=[]
+        for page in built.pages:
+            orientation=page.height > page.width
+            if not groups or groups[-1][0] != orientation: groups.append((orientation,[]))
+            groups[-1][1].append(page)
+        if [g[0] for g in groups] != [True,False,True]:
+            failures.append('Expected portrait narrative, landscape matrices and portrait closing sections')
+        index=0
+        for region,(_,pages) in enumerate(groups):
+            reference_range=[(0,7),(7,20),(20,22)][min(region,2)]
+            for offset,new in enumerate(pages):
+                number=index+1;index+=1
+                ref_index=reference_range[0]+offset
+                old=original.pages[min(ref_index,reference_range[1]-1)]
+                item = {'page': number, 'reference_page':ref_index+1 if ref_index < reference_range[1] else None,
+                        'size': [new.width, new.height],
+                        'matches_original_body': body_chars(old) == body_chars(new),
+                        'capability_symbols':compare_markers(old,new)}
+                if abs(old.width-new.width) > 1 or abs(old.height-new.height) > 1:
+                    failures.append(f'Page {number}: page size/orientation differs from v1.3')
+                rules = [line for line in new.lines
+                         if new.height-80 < line['top'] < new.height-35
+                         and line['x1']-line['x0'] > new.width*.7 and abs(line['y1']-line['y0']) < 1]
+                item['footer_rule_present']=bool(rules)
+                if not rules: failures.append(f'Page {number}: footer separator missing')
+                footer=new.crop((0,new.height-75,new.width,new.height)).extract_text() or ''
+                counter=re.search(r'(?<!\d)(\d+)\s*of\s*(\d+)(?!\d)',footer)
+                item['footer_page_number']=[int(counter[1]),int(counter[2])] if counter else None
+                if item['footer_page_number'] != [number,len(built.pages)]:
+                    failures.append(f'Page {number}: incorrect footer page number')
+                if not body_chars(new): failures.append(f'Page {number}: no body content')
+                if any(c['text'].strip() and (c['x0'] < -1 or c['x1'] > new.width+1 or c['top'] < -1 or c['bottom'] > new.height+1) for c in new.chars):
                     failures.append(f'Page {number}: text outside the page bounds')
-                    break
-            report['pages'].append(item)
+                report['pages'].append(item)
     for name, pdf in [('reference', reference), ('generated', actual)]:
         directory = output / name
         directory.mkdir(exist_ok=True)
@@ -93,7 +175,9 @@ def check(actual: Path, source: Path, reference: Path, output: Path) -> None:
                        capture_output=True, timeout=180)
     for item in report['pages']:
         n = item['page']
-        old = Image.open(output / 'reference' / f'page-{n:02d}.png').convert('RGB')
+        reference_page=item['reference_page']
+        old = (Image.open(output / 'reference' / f'page-{reference_page:02d}.png').convert('RGB')
+               if reference_page else Image.new('RGB',Image.open(output/'generated'/f'page-{n:02d}.png').size,'white'))
         new = Image.open(output / 'generated' / f'page-{n:02d}.png').convert('RGB')
         # Google rounds A4 dimensions; normalize the sub-point page-box difference.
         resized = new.resize(old.size, Image.Resampling.LANCZOS)
@@ -107,15 +191,16 @@ def check(actual: Path, source: Path, reference: Path, output: Path) -> None:
     (output / 'layout-report.json').write_text(json.dumps(report, indent=2)+'\n')
     if failures:
         raise ValueError('\n'.join(failures))
-    print('22-page layout, text and hyperlink checks passed; review every comparison image.')
+    print('Source coverage, layout and hyperlink checks passed; review every comparison image.')
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--pdf', type=Path, default=ROOT/'build/matrix/DNS-Abuse-Techniques-Matrix.pdf')
-    p.add_argument('--source', type=Path, default=ROOT/'matrix/source/DNS-Abuse-Techniques-Matrix.docx')
+    p.add_argument('--matrix-dir',type=Path,default=ROOT/'matrix')
+    p.add_argument('--template', type=Path, default=ROOT/'matrix/templates/DNS-Abuse-Techniques-Matrix.docx')
     p.add_argument('--reference', type=Path, default=ROOT/'DNS-Abuse-Techniques-Matrix_v1.3.pdf')
     p.add_argument('--out', type=Path, default=ROOT/'build/matrix/review')
-    a = p.parse_args(); check(a.pdf, a.source, a.reference, a.out)
+    a = p.parse_args(); check(a.pdf, a.template, a.reference, a.out,a.matrix_dir)
 if __name__ == '__main__':
     main()

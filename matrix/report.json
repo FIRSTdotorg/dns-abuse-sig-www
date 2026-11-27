@@ -2,6 +2,11 @@
   "title": "DNS Abuse Techniques Matrix",
   "subtitle": "FIRST DNS Abuse Special Interest Group",
   "website": "https://www.first.org/global/sigs/dns",
-  "language": "en"
+  "language": "en",
+  "history_heading": "Version History",
+  "history_columns": [
+    "Version",
+    "Date",
+    "Comment"
+  ]
 }
-

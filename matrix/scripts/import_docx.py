@@ -255,6 +255,7 @@ def extract_assets(docx_path: Path, out_dir: Path) -> None:
     wanted = {
         "word/media/image3.png": "header.png",
         "word/media/image4.png": "header-large.png",
+        "word/media/image9.png": "header-portrait.png",
         "word/media/image1.png": "capability-yes.png",
         "word/media/image2.png": "capability-no.png",
     }

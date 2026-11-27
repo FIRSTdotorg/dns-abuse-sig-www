@@ -26,6 +26,25 @@ def validate(matrix_dir: Path) -> list[str]:
     data_dir = matrix_dir / "data"
     errors: list[str] = []
 
+    columns = {
+        "actions.csv": {"action", "label", "description"},
+        "techniques.csv": {"technique_id", "label", "description"},
+        "stakeholders.csv": {"stakeholder_id", "label", "description"},
+        "matrix.csv": {"action", "technique_id", "stakeholder_id", "capability", "note"},
+        "version_history.csv": {"version", "date", "comment"},
+    }
+    for filename, expected in columns.items():
+        with (data_dir / filename).open(encoding="utf-8", newline="") as stream:
+            reader = csv.DictReader(stream)
+            headers = reader.fieldnames or []
+            if set(headers) != expected or len(headers) != len(expected):
+                fail(errors, f"{filename}: expected columns {sorted(expected)}, found {headers}")
+            for number, row in enumerate(reader, 2):
+                if None in row or any(value is None for value in row.values()):
+                    fail(errors, f"{filename}:{number}: invalid number of CSV values")
+    if errors:
+        return errors
+
     actions = read_csv(data_dir / "actions.csv")
     stakeholders = read_csv(data_dir / "stakeholders.csv")
     techniques = read_csv(data_dir / "techniques.csv")

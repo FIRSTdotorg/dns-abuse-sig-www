@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the original editable DOCX, preserving its v1 page system."""
+"""Fill the original layout from Markdown and CSV, then render the temporary DOCX."""
 from __future__ import annotations
 import argparse
 import hashlib
@@ -12,10 +12,11 @@ import tempfile
 from zipfile import ZipFile
 from lxml import etree as ET
 from pypdf import PdfReader, PdfWriter
-from pypdf.generic import ArrayObject, ByteStringObject
+from pypdf.generic import ArrayObject, ByteStringObject, NameObject, TextStringObject
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = ROOT / 'matrix/source/DNS-Abuse-Techniques-Matrix.docx'
+TEMPLATE = ROOT / 'matrix/templates/DNS-Abuse-Techniques-Matrix.docx'
+from fill_docx_template import fill, inputs
 W = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
 
 
@@ -111,7 +112,13 @@ def prepare(source: Path, destination: Path) -> None:
             output.writestr(info, data)
 
 
-def render(source: Path, destination: Path, soffice: str) -> None:
+def render(source: Path, destination: Path, soffice: str, matrix_dir: Path | None = None) -> None:
+    source, destination = source.resolve(), destination.resolve()
+    matrix_dir = (matrix_dir or ROOT/'matrix').resolve()
+    source_files = inputs(matrix_dir)
+    authored = {(matrix_dir/name).resolve() for name in source_files}
+    if destination in authored or destination.with_suffix('.build.json') in authored:
+        raise ValueError('The output must not overwrite an authored source')
     if source == destination or source == destination.with_suffix('.build.json'):
         raise ValueError('The output must not overwrite the source DOCX')
     if destination == ROOT / 'DNS-Abuse-Techniques-Matrix_v1.3.pdf':
@@ -120,8 +127,10 @@ def render(source: Path, destination: Path, soffice: str) -> None:
     before = hashlib.sha256(source.read_bytes()).hexdigest()
     with tempfile.TemporaryDirectory(prefix='matrix-docx-') as temporary:
         work = Path(temporary)
+        filled = work/'filled.docx'
+        fill(source, filled, matrix_dir)
         prepared = work / 'matrix.docx'
-        prepare(source, prepared)
+        prepare(filled, prepared)
         fonts = work / 'fonts'
         fonts.mkdir()
         with ZipFile(source) as original:
@@ -152,8 +161,13 @@ def render(source: Path, destination: Path, soffice: str) -> None:
         writer.metadata = {key: value for key, value in (writer.metadata or {}).items()
                            if key not in ('/CreationDate', '/ModDate')}
         writer.root_object.pop('/Metadata', None)
+        metadata=json.loads((matrix_dir/'report.json').read_text())
+        writer.add_metadata({'/Title':metadata['title'],'/Subject':metadata['subtitle']})
+        writer.root_object[NameObject('/Lang')]=TextStringObject(metadata['language'])
         version = subprocess.check_output([soffice, '--version'], text=True).strip()
-        digest = hashlib.sha256(source.read_bytes() + Path(__file__).read_bytes() + version.encode()).digest()[:16]
+        generator = hashlib.sha256(Path(__file__).read_bytes() + Path(__file__).with_name('fill_docx_template.py').read_bytes()).hexdigest()
+        content = hashlib.sha256(json.dumps(source_files,sort_keys=True).encode()).hexdigest()
+        digest = hashlib.sha256((before + generator + content + version).encode()).digest()[:16]
         writer._ID = ArrayObject([ByteStringObject(digest), ByteStringObject(digest)])
         writer.compress_identical_objects(remove_duplicates=False, remove_unreferenced=True)
         with tempfile.NamedTemporaryFile(dir=destination.parent, suffix='.pdf', delete=False) as stream:
@@ -163,14 +177,15 @@ def render(source: Path, destination: Path, soffice: str) -> None:
             except BaseException:
                 pending.unlink(missing_ok=True)
                 raise
-        if hashlib.sha256(source.read_bytes()).hexdigest() != before:
+        if hashlib.sha256(source.read_bytes()).hexdigest() != before or inputs(matrix_dir) != source_files:
             pending.unlink(missing_ok=True)
             raise RuntimeError('Source DOCX changed during build')
         os.replace(pending, destination)
+        shutil.copyfile(filled, destination.parent/'report.docx')
         destination.with_suffix('.build.json').write_text(json.dumps({
-            'source': str(source.relative_to(ROOT)) if source.is_relative_to(ROOT) else source.name,
-            'source_sha256': before, 'renderer': version,
-            'generator_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            'template': str(source.relative_to(ROOT)) if source.is_relative_to(ROOT) else source.name,
+            'template_sha256': before, 'sources': source_files, 'content_sha256': content,
+            'renderer': version, 'generator_sha256': generator,
             'pdf_sha256': hashlib.sha256(destination.read_bytes()).hexdigest(),
         }, indent=2) + '\n')
     if hashlib.sha256(source.read_bytes()).hexdigest() != before:
@@ -180,13 +195,14 @@ def render(source: Path, destination: Path, soffice: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--source', type=Path, default=SOURCE)
+    parser.add_argument('--template', type=Path, default=TEMPLATE)
+    parser.add_argument('--matrix-dir', type=Path, default=ROOT/'matrix')
     parser.add_argument('--out', type=Path, default=ROOT / 'build/matrix/DNS-Abuse-Techniques-Matrix.pdf')
     parser.add_argument('--soffice', default=os.environ.get('SOFFICE', shutil.which('soffice')))
     args = parser.parse_args()
     if not args.soffice:
         parser.error('LibreOffice soffice is required. Set SOFFICE or add it to PATH.')
-    render(args.source.resolve(), args.out.resolve(), args.soffice)
+    render(args.template.resolve(), args.out.resolve(), args.soffice, args.matrix_dir)
 
 if __name__ == '__main__':
     main()
