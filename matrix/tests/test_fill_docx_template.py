@@ -317,6 +317,20 @@ class FillTemplateTests(unittest.TestCase):
         self.assertEqual(len(docpr_ids), len(set(docpr_ids)))
         self.assertEqual(len(cnvpr_ids), len(set(cnvpr_ids)))
 
+    def test_key_icons_survive_neighbouring_source_insertions(self):
+        chapter=self.matrix/'content/05-abuse-matrices.md'
+        original=chapter.read_text()
+        for before in (True,False):
+            with self.subTest(before=before):
+                if before:
+                    authored=original.replace('Yes:','A new source explanation before the key.\n\nYes:',1)
+                else:
+                    authored=original.replace('\n- **DGAs**','\nA new source explanation after the key.\n\n- **DGAs**',1)
+                chapter.write_text(authored)
+                document=document_xml(self.fill())
+                key_paragraph=next(p for p in document.iter(W+'p') if 'detect / mitigate / prevent the threat' in text(p))
+                self.assertEqual(len(list(key_paragraph.iter(W+'drawing'))),2)
+
     def test_unknown_csv_field_is_rejected_instead_of_ignored(self):
         path=self.matrix/'data/actions.csv'
         rows=read_rows(path)

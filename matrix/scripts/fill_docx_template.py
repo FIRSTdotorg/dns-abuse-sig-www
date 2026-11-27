@@ -270,9 +270,10 @@ class Filler:
         # Section properties are layout controls, independent of paragraph text.
         sections = [deepcopy(s) for p in old for s in p.findall(W+'pPr/'+W+'sectPr')]
         result, instances = [], {}
+        legend_template=next((p for p in old if len(list(p.iter(W+'drawing'))) == 2),None)
         for index,block in enumerate(source):
-            if block['text'].startswith('Yes:') and len(list(prototypes[index].iter(W+'drawing'))) == 2:
-                p = self.legend(prototypes[index],block['text'])
+            if block['text'].startswith('Yes:') and legend_template is not None:
+                p = self.legend(legend_template,block['text'])
             else:
                 prototype = prototypes[index]
                 if block['kind']=='p' and prototype.find(W+'pPr/'+W+'pStyle') is not None:
